@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0fepawattu05"]
+
+[ext_resource type="PackedScene" uid="uid://gwebflaeoytd" path="res://scenes/player.tscn" id="1_10k0m"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_tr4kl"]
+[ext_resource type="PackedScene" uid="uid://birppe17wx4al" path="res://scenes/bullet_spawner.tscn" id="2_6clhf"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_tr4kl")
+
+[node name="Player" parent="." instance=ExtResource("1_10k0m")]
+position = Vector2(251, 347)
+
+[node name="BulletSpawner" parent="." instance=ExtResource("2_6clhf")]
+position = Vector2(250, 37)
