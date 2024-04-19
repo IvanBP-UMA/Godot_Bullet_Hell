@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var direction: Vector2 = Vector2.ZERO
-const SPEED: float = 150
+const SPEED: float = 200
 
 func _physics_process(delta):
 	if Input.is_action_pressed("moveLeft"):
