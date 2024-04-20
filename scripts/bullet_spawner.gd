@@ -2,16 +2,19 @@ extends Node
 class_name BulletSpawner
 
 @onready var timer: Timer = $Timer
+
 var patterns: Dictionary = {
-	"spreadAttack": Callable(self, "spreadAttack"),
-	"spinningAttack": Callable(self, "spinningAttack")
+	PatternList.patterns.spreadPattern: Callable(self, "spreadAttack")
 }
 
-func newAttack(function: Callable, patternSpecs: AttackPattern):
+func newAttack(patternSpecs: AttackPattern):
+	var function = patterns[patternSpecs.patternName]
 	timer.timeout.connect(function.bind(patternSpecs))
 	for i in patternSpecs.rows:
 		timer.start(patternSpecs.frequency)
 		await timer.timeout
+		if (patternSpecs.isSpinning):
+			patternSpecs.setMainDirection(patternSpecs.mainDirection.rotated(patternSpecs.getSpinRate()))
 
 func lineAttack(bulletSpecs: AttackPattern):
 	var bulletSize: Vector2 = bulletSpecs.size
@@ -25,8 +28,3 @@ func lineAttack(bulletSpecs: AttackPattern):
 func spreadAttack(bulletSpecs: SpreadPattern):
 	for i in bulletSpecs.lines:
 		lineAttack(bulletSpecs)
-
-func spinningAttack(bulletSpecs: SpreadPattern):
-	for i in bulletSpecs.lines:
-		lineAttack(bulletSpecs)
-	bulletSpecs.setMainDirection(bulletSpecs.mainDirection.rotated(PI/12))
