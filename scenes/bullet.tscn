@@ -1,9 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://be3bjufk6wn76"]
+[gd_scene load_steps=3 format=3 uid="uid://be3bjufk6wn76"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_bokvu"]
 [ext_resource type="Texture2D" uid="uid://bjp3bmu2rum4r" path="res://assets/gordo.png" id="2_3sy8s"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6y42"]
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_bokvu")
@@ -12,7 +10,6 @@ script = ExtResource("1_bokvu")
 texture = ExtResource("2_3sy8s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_b6y42")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

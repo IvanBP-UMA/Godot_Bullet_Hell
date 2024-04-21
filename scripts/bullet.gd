@@ -5,13 +5,16 @@ var hitbox: CollisionShape2D
 var sprite: Sprite2D
 var direction: Vector2
 var speed: float
-var size: Vector2
 var graceMultiplier: float = 1.8
 
-func newBullet(size: Vector2, direction: Vector2, speed: float):
-	hitbox.shape.size = size
+func newBullet(shape: Shape2D, direction: Vector2, speed: float) -> void:
+	hitbox.shape = shape
 	self.direction = direction
-	sprite.scale = Vector2(size.x/sprite.texture.get_width() * graceMultiplier, size.y/sprite.texture.get_height() * graceMultiplier)
+	if (shape.get_class() == "RectangleShape2D"):
+		sprite.scale = Vector2(shape.size.x/sprite.texture.get_width() * graceMultiplier, shape.size.y/sprite.texture.get_height() * graceMultiplier)
+	else:
+		var scale = shape.radius*2/sprite.texture.get_width() * graceMultiplier
+		sprite.scale = Vector2(scale, scale)
 	self.speed = speed
 	
 func _ready():

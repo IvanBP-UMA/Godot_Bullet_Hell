@@ -1,17 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://gwebflaeoytd"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_456ap"]
-[ext_resource type="Texture2D" uid="uid://dkmsdgdscri5" path="res://assets/sonic.png" id="1_v53vc"]
+[ext_resource type="Texture2D" uid="uid://uta0s2icjk0h" path="res://assets/Shiren.png" id="2_i4r3r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4rtq"]
-size = Vector2(17, 34)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fo5j4"]
+radius = 6.0
+height = 26.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_456ap")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_v53vc")
+texture = ExtResource("2_i4r3r")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_k4rtq")
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_fo5j4")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

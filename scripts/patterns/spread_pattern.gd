@@ -3,17 +3,17 @@ class_name SpreadPattern
 
 @export_group("Spread Pattern")
 @export var frontFacing: bool
-@export var lines: int
+@export var lines: int = 1
 
 var directionCounter: int = 0
 var directionsArray: Array[Vector2]
 
-func setMainDirection(newDir: Vector2):
+func setMainDirection(newDir: Vector2) -> void:
 	super(newDir)
 	directionsArray.clear()
 	createDirectionsArray()
 
-func createDirectionsArray():
+func createDirectionsArray() -> void:
 	var angle = 2*PI/lines
 	if (frontFacing):
 		angle = PI/(2*lines)
@@ -23,7 +23,7 @@ func createDirectionsArray():
 		else:
 			directionsArray.append(mainDirection.rotated(-(i/2)*angle))
 
-func getDirection():
+func getDirection() -> Vector2:
 	if (directionsArray.size() == 0):
 		createDirectionsArray()
 	directionCounter += 1
