@@ -14,6 +14,7 @@ func _ready():
 			if (attackPattern.followPlayer): 
 				attackPattern.setMainDirection(getVectorToPlayer())
 			await spawner.newAttack(attackPattern)
+	spawner.newAttack(attackPattern)
 
 func getVectorToPlayer() -> Vector2:
 	var playerPos: Vector2 = get_tree().get_nodes_in_group("player")[0].global_position

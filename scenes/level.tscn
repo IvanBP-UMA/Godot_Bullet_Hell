@@ -15,7 +15,7 @@ lines = 3
 rows = 5
 frequency = 0.15
 shape = SubResource("CircleShape2D_tfcsr")
-speed = 3.0
+speed = 2.0
 mainDirection = Vector2(0, 1)
 followPlayer = true
 patternName = 0
@@ -33,4 +33,3 @@ lives = 1
 [node name="Enemy" parent="." instance=ExtResource("3_c4s1v")]
 position = Vector2(255, 71)
 attackPattern = SubResource("Resource_7xuaa")
-infiniteAttack = true
