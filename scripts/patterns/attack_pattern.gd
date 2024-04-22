@@ -1,4 +1,4 @@
-extends Resource
+extends Action
 class_name AttackPattern
 
 @export_group("Pattern Specifications")

@@ -1,7 +1,7 @@
 extends Area2D
 class_name Enemy
 
-@export var attackPattern: AttackPattern
+@export var routine: ActionRoutine
 @export var health: int = 1
 @export var infiniteAttack: bool
 var spawner: BulletSpawner
@@ -9,12 +9,14 @@ var spawner: BulletSpawner
 func _ready():
 	spawner = preload("res://scenes/bullet_spawner.tscn").instantiate()
 	add_child(spawner)
-	if infiniteAttack:
-		while true:
-			if (attackPattern.followPlayer): 
-				attackPattern.setMainDirection(getVectorToPlayer())
-			await spawner.newAttack(attackPattern)
-	spawner.newAttack(attackPattern)
+	for action in routine.actions:
+		await executeAction(action)
+
+func executeAction(action: Action):
+	if action is SpreadPattern:
+		spawner.newAttack(action)
+	
+	await get_tree().create_timer(action.cooldownTime).timeout
 
 func getVectorToPlayer() -> Vector2:
 	var playerPos: Vector2 = get_tree().get_nodes_in_group("player")[0].global_position

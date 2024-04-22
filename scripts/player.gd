@@ -41,6 +41,7 @@ func attack() -> void:
 	await get_tree().create_timer(0.15).timeout
 	attackHitbox.set_collision_mask_value(1, false)
 	sprite.modulate = Color(1,1,1,1)
+	await get_tree().create_timer(0.3).timeout
 	isAttacking = false
 
 func bomb() -> void:
