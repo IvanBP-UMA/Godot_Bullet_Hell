@@ -4,7 +4,7 @@ class_name BulletSpawner
 @onready var timer: Timer = $Timer
 
 var patterns: Dictionary = {
-	PatternList.patterns.spreadPattern: Callable(self, "spreadAttack")
+	ActionList.actions.spreadPattern: Callable(self, "spreadAttack")
 }
 
 func newAttack(patternSpecs: AttackPattern) -> void:

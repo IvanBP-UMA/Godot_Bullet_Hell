@@ -13,3 +13,6 @@ texture = ExtResource("2_r2rcp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qusau")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

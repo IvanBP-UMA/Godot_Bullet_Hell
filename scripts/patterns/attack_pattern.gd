@@ -8,7 +8,7 @@ class_name AttackPattern
 @export var speed: float = 2.5
 @export var mainDirection: Vector2 = Vector2(0,1)
 @export var followPlayer: bool
-@export var patternName: PatternList.patterns
+
 
 @export_subgroup("Spinning Pattern")
 @export var isSpinning: bool
