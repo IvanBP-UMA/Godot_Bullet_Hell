@@ -18,31 +18,25 @@ func executeRoutine():
 
 func executeAction(action: Action):
 	match action.actionType:
-		ActionList.actions.Spread_Attack:
+		ActionList.actions.Directional_Attack:
 			await newDirectionalAttack(action)
 	
 	await get_tree().create_timer(action.cooldownTime).timeout
-
-func getVectorToPlayer() -> Vector2:
-	var playerPos: Vector2 = get_tree().get_nodes_in_group("player")[0].global_position
-	return (playerPos-self.global_position).normalized()
 
 func newDirectionalAttack(patternSpecs: DirectionalAttack) -> void:
 	if (patternSpecs.followPlayer):
 		patternSpecs.setMainDirection(getVectorToPlayer())
 	var originalDirection: Vector2 = patternSpecs.mainDirection
-	
-	for i in patternSpecs.rows:
-		await get_tree().create_timer(patternSpecs.frequency).timeout
-		spreadAttack(patternSpecs)
-		if (patternSpecs.isSpinning):
-			patternSpecs.setMainDirection(patternSpecs.mainDirection.rotated(patternSpecs.getSpinRate()))
-	
+	await spawnBullets(patternSpecs)
 	patternSpecs.setMainDirection(originalDirection)
 
-func spreadAttack(bulletSpecs: DirectionalAttack) -> void:
-	for i in bulletSpecs.lines:
-		lineAttack(bulletSpecs)
+func spawnBullets(patternSpecs: DirectionalAttack) -> void:
+	for i in patternSpecs.rows:
+		await get_tree().create_timer(patternSpecs.frequency).timeout
+		for j in patternSpecs.lines:
+			lineAttack(patternSpecs)
+		if (patternSpecs.isSpinning):
+			patternSpecs.setMainDirection(patternSpecs.mainDirection.rotated(patternSpecs.getSpinRate()))
 
 func lineAttack(bulletSpecs: Attack) -> void:
 	var shape: Shape2D = bulletSpecs.shape
@@ -53,3 +47,7 @@ func lineAttack(bulletSpecs: Attack) -> void:
 	bullet.add_to_group("bullets")
 	add_child(bullet)
 	bullet.newBullet(shape, direction, speed)
+
+func getVectorToPlayer() -> Vector2:
+	var playerPos: Vector2 = get_tree().get_nodes_in_group("player")[0].global_position
+	return (playerPos-self.global_position).normalized()

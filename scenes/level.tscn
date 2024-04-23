@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcggl62fic84i"]
+[gd_scene load_steps=6 format=3 uid="uid://bcggl62fic84i"]
 
 [ext_resource type="PackedScene" uid="uid://cpwyjgocp55pp" path="res://scenes/enemy.tscn" id="1_rnwlh"]
 [ext_resource type="PackedScene" uid="uid://gwebflaeoytd" path="res://scenes/player.tscn" id="2_lhnou"]
+[ext_resource type="Resource" uid="uid://bo8qtc15hqc80" path="res://predefined_resources/attacks/following_tri_attack.tres" id="2_uld3r"]
+[ext_resource type="Script" path="res://scripts/action_resources/action_routine.gd" id="3_581dy"]
+
+[sub_resource type="Resource" id="Resource_jaxdm"]
+script = ExtResource("3_581dy")
+actions = Array[Resource("res://scripts/action_resources/action.gd")]([ExtResource("2_uld3r")])
+repeatLast = true
 
 [node name="Level" type="Node2D"]
 
 [node name="Enemy" parent="." instance=ExtResource("1_rnwlh")]
 position = Vector2(249, 68)
+routine = SubResource("Resource_jaxdm")
 
 [node name="Player" parent="." instance=ExtResource("2_lhnou")]
 position = Vector2(260, 320)
