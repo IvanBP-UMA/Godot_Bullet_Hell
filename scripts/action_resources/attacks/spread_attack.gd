@@ -1,5 +1,5 @@
-extends AttackPattern
-class_name SpreadPattern
+extends DirectionalAttack
+class_name SpreadAttack
 
 @export_group("Spread Pattern")
 @export var frontFacing: bool

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://be3bjufk6wn76"]
 
-[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_bokvu"]
+[ext_resource type="Script" path="res://scripts/nodes_scripts/bullet.gd" id="1_bokvu"]
 [ext_resource type="Texture2D" uid="uid://bjp3bmu2rum4r" path="res://assets/gordo.png" id="2_3sy8s"]
 
 [node name="Bullet" type="Area2D"]

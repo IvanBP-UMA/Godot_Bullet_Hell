@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="SpreadAttack" load_steps=3 format=3 uid="uid://bo8qtc15hqc80"]
+
+[ext_resource type="Script" path="res://scripts/action_resources/attacks/spread_attack.gd" id="1_ihm11"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a5ct6"]
+radius = 5.0
+
+[resource]
+script = ExtResource("1_ihm11")
+frontFacing = true
+lines = 3
+rows = 5
+frequency = 0.1
+shape = SubResource("CircleShape2D_a5ct6")
+speed = 2.5
+mainDirection = Vector2(0, 1)
+followPlayer = true
+isSpinning = false
+maxRotation = 6.28319
+reverseSpin = false
+cooldownTime = 0.5
+actionType = 1
+repetitions = 5

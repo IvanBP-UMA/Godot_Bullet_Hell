@@ -1,61 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0fepawattu05"]
+[gd_scene load_steps=3 format=3 uid="uid://bcggl62fic84i"]
 
-[ext_resource type="PackedScene" uid="uid://gwebflaeoytd" path="res://scenes/player.tscn" id="1_10k0m"]
-[ext_resource type="Script" path="res://scripts/level.gd" id="1_tr4kl"]
-[ext_resource type="PackedScene" uid="uid://cpwyjgocp55pp" path="res://scenes/enemy.tscn" id="3_c4s1v"]
-[ext_resource type="Script" path="res://scripts/patterns/spread_pattern.gd" id="4_l62g7"]
-[ext_resource type="Script" path="res://scripts/action_routine.gd" id="5_0uk62"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_k6k24"]
-radius = 5.0
-
-[sub_resource type="Resource" id="Resource_0ek65"]
-script = ExtResource("4_l62g7")
-frontFacing = false
-lines = 6
-rows = 20
-frequency = 0.1
-shape = SubResource("CircleShape2D_k6k24")
-speed = 2.5
-mainDirection = Vector2(0, 1)
-followPlayer = false
-isSpinning = true
-maxRotation = 6.28319
-reverseSpin = false
-cooldownTime = 2.0
-actionType = 1
-repeat = true
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2fjga"]
-radius = 5.0
-
-[sub_resource type="Resource" id="Resource_q8k85"]
-script = ExtResource("4_l62g7")
-frontFacing = false
-lines = 1
-rows = 20
-frequency = 0.1
-shape = SubResource("CircleShape2D_2fjga")
-speed = 2.5
-mainDirection = Vector2(0, 1)
-followPlayer = false
-isSpinning = false
-maxRotation = 6.28319
-reverseSpin = false
-cooldownTime = 1.0
-actionType = 1
-repeat = false
-
-[sub_resource type="Resource" id="Resource_kvtk4"]
-script = ExtResource("5_0uk62")
-actions = Array[Resource("res://scripts/action.gd")]([SubResource("Resource_0ek65"), SubResource("Resource_q8k85")])
+[ext_resource type="PackedScene" uid="uid://cpwyjgocp55pp" path="res://scenes/enemy.tscn" id="1_rnwlh"]
+[ext_resource type="PackedScene" uid="uid://gwebflaeoytd" path="res://scenes/player.tscn" id="2_lhnou"]
 
 [node name="Level" type="Node2D"]
-script = ExtResource("1_tr4kl")
 
-[node name="Enemy" parent="." instance=ExtResource("3_c4s1v")]
-position = Vector2(248, 47)
-routine = SubResource("Resource_kvtk4")
+[node name="Enemy" parent="." instance=ExtResource("1_rnwlh")]
+position = Vector2(249, 68)
 
-[node name="Player" parent="." instance=ExtResource("1_10k0m")]
-position = Vector2(251, 347)
+[node name="Player" parent="." instance=ExtResource("2_lhnou")]
+position = Vector2(260, 320)

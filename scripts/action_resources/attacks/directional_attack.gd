@@ -1,10 +1,10 @@
-extends Action
-class_name AttackPattern
+extends Attack
+class_name DirectionalAttack
 
 @export_group("Pattern Specifications")
 @export var rows: int = 1
-@export var frequency: float = 1
-@export var shape: Shape2D
+@export var frequency: float = 0.1
+@export var shape: Shape2D = CircleShape2D.new()
 @export var speed: float = 2.5
 @export var mainDirection: Vector2 = Vector2(0,1)
 @export var followPlayer: bool
