@@ -5,7 +5,6 @@ signal finishedAction
 
 @export var routine: ActionRoutine
 @export var health: int = 1
-@export var infiniteAttack: bool
 
 @onready var timer: Timer = $Timer
 
@@ -15,24 +14,28 @@ func _ready():
 func executeRoutine():
 	for i in routine.actions.size():
 		await executeAction(routine.actions[i])
+		if (routine.actions[i].repeat):
+			routine.actions.insert(i+1,routine.actions[i])
 
 func executeAction(action: Action):
 	match action.actionType:
 		ActionList.actions.spreadPattern:
 			await newDirectionalAttack(action)
 			
-	await get_tree().create_timer(action.cooldownTime).timeout
+	if (action.cooldownTime >= 0):
+		await get_tree().create_timer(action.cooldownTime).timeout
 
 func getVectorToPlayer() -> Vector2:
 	var playerPos: Vector2 = get_tree().get_nodes_in_group("player")[0].global_position
 	return (playerPos-self.global_position).normalized()
 
 func newDirectionalAttack(patternSpecs: AttackPattern) -> void:
+	if (patternSpecs.followPlayer):
+		patternSpecs.setMainDirection(getVectorToPlayer())
 	var originalDirection = patternSpecs.mainDirection
-	timer.timeout.connect(Callable(self, "spreadAttack").bind(patternSpecs))
 	for i in patternSpecs.rows:
-		timer.start(patternSpecs.frequency)
-		await timer.timeout
+		await get_tree().create_timer(patternSpecs.frequency).timeout
+		spreadAttack(patternSpecs)
 		if (patternSpecs.isSpinning):
 			patternSpecs.setMainDirection(patternSpecs.mainDirection.rotated(patternSpecs.getSpinRate()))
 	patternSpecs.setMainDirection(originalDirection)
