@@ -38,12 +38,17 @@ func spawnBullets(patternSpecs: DirectionalAttack) -> void:
 		if (patternSpecs.isSpinning):
 			patternSpecs.setMainDirection(patternSpecs.mainDirection.rotated(patternSpecs.getSpinRate()))
 
-func lineAttack(bulletSpecs: Attack) -> void:
+func lineAttack(bulletSpecs: DirectionalAttack) -> void:
 	var shape: Shape2D = bulletSpecs.shape
 	var speed: float = bulletSpecs.speed
 	var direction: Vector2 = bulletSpecs.getDirection().normalized()
 	
-	var bullet: Bullet = preload("res://scenes/bullet.tscn").instantiate()
+	var bullet
+	if (bulletSpecs.wavyAttack):
+		bullet = preload("res://scenes/math_bullet.tscn").instantiate()
+		bullet.mathBulletSetUp(bulletSpecs.function, bulletSpecs.step)
+	else:
+		bullet = preload("res://scenes/bullet.tscn").instantiate()
 	bullet.add_to_group("bullets")
 	add_child(bullet)
 	bullet.newBullet(shape, direction, speed)

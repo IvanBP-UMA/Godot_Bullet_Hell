@@ -15,6 +15,11 @@ class_name DirectionalAttack
 @export_range(0, 2*PI, 0.001,"or_greater","suffix:rad") var maxRotation: float = 2*PI
 @export var reverseSpin: bool
 
+@export_subgroup("Wavy direction")
+@export var wavyAttack: bool
+@export var function: MathBullet.mathFunctions
+@export var step: float = 0.1
+
 var spinCounter: int = 0
 
 func getSpinRate() -> float:
