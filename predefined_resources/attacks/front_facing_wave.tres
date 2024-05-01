@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DirectionalAttack" load_steps=3 format=3 uid="uid://iv3r7t62axo3"]
+
+[ext_resource type="Script" path="res://scripts/action_resources/attacks/directional_attack.gd" id="1_cjhuh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1pilx"]
+radius = 5.0
+
+[resource]
+script = ExtResource("1_cjhuh")
+lines = 3
+rows = 20
+frequency = 0.15
+mainDirection = Vector2(1, 0)
+aimPlayer = false
+frontFacing = true
+spinningPattern = true
+maxRotation = 3.142
+reverseSpin = true
+shape = SubResource("CircleShape2D_1pilx")
+speed = 2.5
+wavyAttack = false
+function = 0
+step = 0.1
+cooldownTime = 0.5
+actionType = 1
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0

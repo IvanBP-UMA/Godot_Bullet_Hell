@@ -5,26 +5,35 @@ class_name Enemy
 @export var health: int = 1
 
 func _ready():
-	executeRoutine()
-
-func executeRoutine():
-	for action in routine.actions:
-		for i in action.repetitions:
-			await executeAction(action)
-	
-	if (routine.repeatLast):
+	await executeRoutine(0)
+	if (routine.repeatInfinitely):
 		while true:
-			await executeAction(routine.actions[routine.actions.size()-1])
+			await get_tree().create_timer(routine.repetitionCooldown).timeout
+			await executeRoutine(routine.repeatFrom)
 
-func executeAction(action: Action):
+func executeRoutine(startingIndex: int):
+	for i in routine.actions.size()-startingIndex:
+		var action: Action = routine.actions[i+startingIndex]
+		if (action.waitBeforeNext):
+			await executeAction(action)
+		else:
+			executeAction(action)
+			await get_tree().create_timer(action.overlapTimer).timeout
+
+func executeAction(action: Action) -> void:
+	var function: Callable
+	
 	match action.actionType:
 		ActionList.actions.Directional_Attack:
-			await newDirectionalAttack(action)
+			function = func (action):
+				await newDirectionalAttack(action)
 	
-	await get_tree().create_timer(action.cooldownTime).timeout
+	for i in action.repetitions:
+		await function.call(action)
+		await get_tree().create_timer(action.cooldownTime).timeout
 
 func newDirectionalAttack(patternSpecs: DirectionalAttack) -> void:
-	if (patternSpecs.followPlayer):
+	if (patternSpecs.aimPlayer):
 		patternSpecs.setMainDirection(getVectorToPlayer())
 	var originalDirection: Vector2 = patternSpecs.mainDirection
 	await spawnBullets(patternSpecs)
@@ -35,7 +44,7 @@ func spawnBullets(patternSpecs: DirectionalAttack) -> void:
 		await get_tree().create_timer(patternSpecs.frequency).timeout
 		for j in patternSpecs.lines:
 			lineAttack(patternSpecs)
-		if (patternSpecs.isSpinning):
+		if (patternSpecs.spinningPattern):
 			patternSpecs.setMainDirection(patternSpecs.mainDirection.rotated(patternSpecs.getSpinRate()))
 
 func lineAttack(bulletSpecs: DirectionalAttack) -> void:
@@ -49,6 +58,7 @@ func lineAttack(bulletSpecs: DirectionalAttack) -> void:
 		bullet.mathBulletSetUp(bulletSpecs.function, bulletSpecs.step)
 	else:
 		bullet = preload("res://scenes/bullet.tscn").instantiate()
+	
 	bullet.add_to_group("bullets")
 	add_child(bullet)
 	bullet.newBullet(shape, direction, speed)
