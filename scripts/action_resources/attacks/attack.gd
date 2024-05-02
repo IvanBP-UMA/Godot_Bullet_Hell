@@ -1,6 +1,11 @@
 extends Action
 class_name Attack
 
+enum parryModes {chance, start, middle, last, always, never}
+
+@export var parryMode: parryModes
+@export var parryRows: int = 2
+
 @export_group("Bullet Details")
 ## Shape of the bullets
 @export var shape: Shape2D = CircleShape2D.new()

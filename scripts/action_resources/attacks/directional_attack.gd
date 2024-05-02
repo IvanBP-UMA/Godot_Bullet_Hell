@@ -11,9 +11,11 @@ class_name DirectionalAttack
 ## Direction of the main line of bullets.<bl> Every line's direction will be based off of this one
 @export var mainDirection: Vector2 = Vector2(0,1)
 ## If checked, changes the main direction so that it points the player at the start of the pattern
-@export var aimPlayer: bool
+@export var aimPlayer: bool = false
+## If checked, the main direction will change each row to point the player
+@export var followPlayer: bool = false
 ## If checked, al lines will occupy the same half of the screen as the main direction
-@export var frontFacing: bool
+@export var frontFacing: bool = false
 
 @export_subgroup("Spinning Pattern")
 ## If checked, the main direction will rotate slightly between rows

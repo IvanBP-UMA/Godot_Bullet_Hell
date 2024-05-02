@@ -1,9 +1,9 @@
 extends Bullet
 class_name MathBullet
 
-enum mathFunctions {sine, cosine, tangent, squareRoot, square, cubic, logaritmic}
+enum mathFunctions {line, sine, cosine, tangent, squareRoot, square, cubic, logaritmic}
 
-var originalDirection: Vector2
+var mainDirection: Vector2
 var function: Callable
 var independentVar: float = 0
 var step: float = 0.1
@@ -11,18 +11,23 @@ var setUp: bool = false
 
 func _process(delta):
 	if (!setUp):
-		originalDirection = direction
+		setMainDirection(direction)
 		setUp = true
 	else:
 		super(delta)
 		updateDirection()
-	
-@warning_ignore("shadowed_variable")
+
 func mathBulletSetUp(function: mathFunctions, step: float):
 	self.step = step
+	setFunction(function)
+
+func setFunction(function: mathFunctions) -> void:
 	match function:
+		mathFunctions.line:
+			self.function = func (value):
+				return value
 		mathFunctions.sine:
-			self.function = func (value) :
+			self.function = func (value):
 				return sin(value)
 		mathFunctions.cosine:
 			self.function = func (value):
@@ -36,12 +41,14 @@ func mathBulletSetUp(function: mathFunctions, step: float):
 		mathFunctions.squareRoot:
 			self.function = func (value):
 				return sqrt(value)
-	
 
-func updateDirection():
+func setMainDirection(newir: Vector2) -> void:
+	mainDirection = newir
+
+func updateDirection() -> void:
 	var currentPosition: Vector2 = Vector2(independentVar, function.call(independentVar))
 	independentVar += step
 	var nextPosition: Vector2 = Vector2(independentVar, function.call(independentVar))
 
-	direction = (nextPosition-currentPosition).rotated(originalDirection.angle()).normalized()
+	direction = (nextPosition-currentPosition).rotated(mainDirection.angle()).normalized()
 	
