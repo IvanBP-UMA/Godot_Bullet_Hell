@@ -8,6 +8,7 @@ var speed: float
 var graceMultiplier: float = 1.8
 enum States {default, parried}
 var currentState: States
+@onready var parentEnemy = self.get_parent()
 
 func newBullet(shape: Shape2D, direction: Vector2, speed: float) -> void:
 	hitbox.shape = shape

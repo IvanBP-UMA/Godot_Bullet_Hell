@@ -7,7 +7,6 @@ class_name Enemy
 @onready var levelBullets: Area2D = self.get_parent().get_children()[0]
 var tween: Tween
 
-
 func _ready():
 	await executeRoutine(0)
 	if (routine.repeatInfinitely):
@@ -40,17 +39,31 @@ func executeAction(action: Action) -> void:
 		ActionList.actions.Directional_Movement:
 			function = func(action):
 				await directionalMovement(action)
+		ActionList.actions.Positional_Movement:
+			function = func(action):
+				await positionalMovement(action)
 	
 	for i in action.repetitions:
 		await function.call(action)
 		await get_tree().create_timer(action.cooldownTime).timeout
 
-func directionalMovement(movementSpecs: DirectionalMovement):
+func positionalMovement(movementSpecs: PositionalMovement) -> void:
+	#When using export variable of enum type, by default first element of enum is set
+	if (movementSpecs.definedPosition != PositionalMovement.definedPositions.EMPTY):
+		movementSpecs.finalPosition = movementSpecs.getCoordinates(movementSpecs.definedPosition)
+	
+	if (tween):
+		tween.kill()
+	tween = self.create_tween()
+	tween.tween_property(self, "global_position", movementSpecs.finalPosition, movementSpecs.movingTime)
+	await tween.finished
+
+func directionalMovement(movementSpecs: DirectionalMovement) -> void:
 	if (tween):
 		tween.kill()
 	tween = self.create_tween()
 	var finalPosition = position + (movementSpecs.direction.normalized() * movementSpecs.speed * movementSpecs.movingTime)
-	tween.tween_property(self, "position", finalPosition, movementSpecs.movingTime)
+	tween.tween_property(self, "global_position", finalPosition, movementSpecs.movingTime)
 
 func newDirectionalAttack(patternSpecs: DirectionalAttack) -> void:
 	if (patternSpecs.aimPlayer):

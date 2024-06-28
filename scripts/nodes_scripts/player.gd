@@ -56,8 +56,13 @@ func attack() -> void:
 	isAttacking = false
 
 func getDirectionToEnemy(bullet: Bullet):
-	var enemyPos: Vector2 = bullet.get_parent().global_position
-	return (enemyPos-self.global_position).normalized()
+	var direction: Vector2
+	if (is_instance_valid(bullet.parentEnemy)):
+		var enemyPos: Vector2 = bullet.parentEnemy.global_position
+		direction = (enemyPos-self.global_position).normalized()
+	else:
+		direction = bullet.direction.normalized() * (-1)
+	return direction
 
 func bomb() -> void:
 	bombs -= 1
