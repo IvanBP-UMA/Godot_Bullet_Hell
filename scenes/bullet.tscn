@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bjp3bmu2rum4r" path="res://assets/gordo.png" id="2_3sy8s"]
 
 [node name="Bullet" type="Area2D"]
+collision_mask = 0
 script = ExtResource("1_bokvu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

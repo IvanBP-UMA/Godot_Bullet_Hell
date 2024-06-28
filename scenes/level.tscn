@@ -1,23 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcggl62fic84i"]
+[gd_scene load_steps=4 format=3 uid="uid://bcggl62fic84i"]
 
 [ext_resource type="PackedScene" uid="uid://cpwyjgocp55pp" path="res://scenes/enemy.tscn" id="1_rnwlh"]
-[ext_resource type="Resource" uid="uid://qbphpy0sh1ba" path="res://predefined_resources/attacks/wavy_four_lines_division.tres" id="2_kvt6s"]
 [ext_resource type="PackedScene" uid="uid://gwebflaeoytd" path="res://scenes/player.tscn" id="2_lhnou"]
-[ext_resource type="Script" path="res://scripts/action_resources/action_routine.gd" id="3_581dy"]
-
-[sub_resource type="Resource" id="Resource_k8g4w"]
-script = ExtResource("3_581dy")
-actions = Array[Resource("res://scripts/action_resources/action.gd")]([ExtResource("2_kvt6s")])
-repeatInfinitely = true
-repeatFrom = 0
-repetitionCooldown = 1.0
-randomRoutineOrder = false
+[ext_resource type="Resource" uid="uid://dyp22atabtm18" path="res://predefined_resources/four_corners.tres" id="3_1tpfx"]
 
 [node name="Level" type="Node2D"]
 
-[node name="Enemy" parent="." instance=ExtResource("1_rnwlh")]
-position = Vector2(262, 78)
-routine = SubResource("Resource_k8g4w")
+[node name="Bullets" type="Area2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_lhnou")]
 position = Vector2(260, 320)
+
+[node name="Enemy" parent="." instance=ExtResource("1_rnwlh")]
+position = Vector2(26, 35)
+routine = ExtResource("3_1tpfx")

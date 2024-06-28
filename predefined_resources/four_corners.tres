@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="ActionRoutine" load_steps=8 format=3 uid="uid://dyp22atabtm18"]
+
+[ext_resource type="Script" path="res://scripts/action_resources/movement.gd" id="1_bcotm"]
+[ext_resource type="Resource" uid="uid://p3kef1c4th3j" path="res://predefined_resources/attacks/following_line.tres" id="2_aa0r0"]
+[ext_resource type="Script" path="res://scripts/action_resources/action_routine.gd" id="3_8j842"]
+
+[sub_resource type="Resource" id="Resource_0x8nh"]
+script = ExtResource("1_bcotm")
+direction = Vector2(1, 0)
+speed = 450.0
+movingTime = 1.0
+actionType = 0
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = false
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_6jjik"]
+script = ExtResource("1_bcotm")
+direction = Vector2(0, 1)
+speed = 300.0
+movingTime = 1.0
+actionType = 0
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = false
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_b05oy"]
+script = ExtResource("1_bcotm")
+direction = Vector2(-1, 0)
+speed = 450.0
+movingTime = 1.0
+actionType = 0
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = false
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_f1l3l"]
+script = ExtResource("1_bcotm")
+direction = Vector2(0, -1)
+speed = 300.0
+movingTime = 1.0
+actionType = 0
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = false
+overlapTimer = 0.0
+
+[resource]
+script = ExtResource("3_8j842")
+actions = Array[Resource("res://scripts/action_resources/action.gd")]([SubResource("Resource_0x8nh"), ExtResource("2_aa0r0"), SubResource("Resource_6jjik"), ExtResource("2_aa0r0"), SubResource("Resource_b05oy"), ExtResource("2_aa0r0"), SubResource("Resource_f1l3l"), ExtResource("2_aa0r0")])
+repeatInfinitely = true
+repeatFrom = 0
+repetitionCooldown = 1.0
+randomRoutineOrder = false

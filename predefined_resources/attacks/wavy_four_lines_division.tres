@@ -19,6 +19,7 @@ maxRotation = 6.28319
 reverseSpin = false
 parryMode = 5
 parryRows = 2
+bulletType = 1
 shape = SubResource("CircleShape2D_1pilx")
 speed = 2.5
 wavyAttack = true

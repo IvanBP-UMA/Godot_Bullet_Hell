@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var speed: float = 200
 @export var lives: int = 3
@@ -10,6 +11,8 @@ extends CharacterBody2D
 
 var direction: Vector2 = Vector2.ZERO
 var isAttacking: bool = false
+var speedMultiplier: float = 3
+var attackPower: int = 2
 
 
 func _physics_process(delta):
@@ -36,13 +39,25 @@ func _input(event):
 
 func attack() -> void:
 	isAttacking = true
-	attackHitbox.set_collision_mask_value(1, true)
 	sprite.modulate = Color("0835ff")
-	await get_tree().create_timer(0.15).timeout
-	attackHitbox.set_collision_mask_value(1, false)
-	sprite.modulate = Color(1,1,1,1)
+	
+	var strikedObjects: Array[Area2D] = attackHitbox.get_overlapping_areas()
+	for area in strikedObjects:
+		if (area is Bullet && area.is_in_group("parryable")):
+			area.direction = getDirectionToEnemy(area)
+			area.speed *= speedMultiplier
+			area.currentState = Bullet.States.parried
+		elif (area is Enemy):
+			print_debug("hit")
+			area.health -= attackPower
+	
 	await get_tree().create_timer(0.3).timeout
+	sprite.modulate = Color(1,1,1,1)
 	isAttacking = false
+
+func getDirectionToEnemy(bullet: Bullet):
+	var enemyPos: Vector2 = bullet.get_parent().global_position
+	return (enemyPos-self.global_position).normalized()
 
 func bomb() -> void:
 	bombs -= 1

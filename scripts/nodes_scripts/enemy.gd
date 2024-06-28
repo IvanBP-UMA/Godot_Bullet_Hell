@@ -2,7 +2,11 @@ extends Area2D
 class_name Enemy
 
 @export var routine: ActionRoutine
-@export var health: int = 1
+@export var health: int = 3
+@onready var bulletZone: Area2D = $BulletZone
+@onready var levelBullets: Area2D = self.get_parent().get_children()[0]
+var tween: Tween
+
 
 func _ready():
 	await executeRoutine(0)
@@ -10,6 +14,12 @@ func _ready():
 		while true:
 			await get_tree().create_timer(routine.repetitionCooldown).timeout
 			await executeRoutine(routine.repeatFrom)
+
+func _process(delta):
+	if (health<=0):
+		queue_free()
+	for bullet in bulletZone.get_children():
+		bullet.reparent(levelBullets, true)
 
 func executeRoutine(startingIndex: int):
 	for i in routine.actions.size()-startingIndex:
@@ -25,12 +35,22 @@ func executeAction(action: Action) -> void:
 	
 	match action.actionType:
 		ActionList.actions.Directional_Attack:
-			function = func (action):
+			function = func(action):
 				await newDirectionalAttack(action)
+		ActionList.actions.Directional_Movement:
+			function = func(action):
+				await directionalMovement(action)
 	
 	for i in action.repetitions:
 		await function.call(action)
 		await get_tree().create_timer(action.cooldownTime).timeout
+
+func directionalMovement(movementSpecs: DirectionalMovement):
+	if (tween):
+		tween.kill()
+	tween = self.create_tween()
+	var finalPosition = position + (movementSpecs.direction.normalized() * movementSpecs.speed * movementSpecs.movingTime)
+	tween.tween_property(self, "position", finalPosition, movementSpecs.movingTime)
 
 func newDirectionalAttack(patternSpecs: DirectionalAttack) -> void:
 	if (patternSpecs.aimPlayer):
@@ -53,19 +73,20 @@ func spawnBullet(bulletSpecs: DirectionalAttack, parryable: bool) -> void:
 	var shape: Shape2D = bulletSpecs.shape
 	var speed: float = bulletSpecs.speed
 	var direction: Vector2 = bulletSpecs.getDirection().normalized()
+	var bullet: Bullet
 	
-	var bullet
-	if (bulletSpecs.wavyAttack):
-		bullet = preload("res://scenes/math_bullet.tscn").instantiate()
-		bullet.mathBulletSetUp(bulletSpecs.function, bulletSpecs.step)
-	else:
-		bullet = preload("res://scenes/bullet.tscn").instantiate()
+	match bulletSpecs.bulletType:
+		Attack.bulletTypes.normal:
+			bullet = preload("res://scenes/bullet.tscn").instantiate()
+		Attack.bulletTypes.math:
+			bullet = preload("res://scenes/math_bullet.tscn").instantiate()
+			bullet.mathBulletSetUp(bulletSpecs.function, bulletSpecs.step)
 	
 	bullet.add_to_group("bullets")
 	if (parryable):
 		bullet.add_to_group("parryable")
 		bullet.find_child("Sprite2D").modulate =  Color("ff33d4")
-	add_child(bullet)
+	bulletZone.add_child(bullet)
 	bullet.newBullet(shape, direction, speed)
 
 func isParryable(patternSpecs: DirectionalAttack, row: int) -> bool:
@@ -90,3 +111,8 @@ func isParryable(patternSpecs: DirectionalAttack, row: int) -> bool:
 func getVectorToPlayer() -> Vector2:
 	var playerPos: Vector2 = get_tree().get_nodes_in_group("player")[0].global_position
 	return (playerPos-self.global_position).normalized()
+
+func _on_area_entered(area: Area2D):
+	if (area is Bullet && area.currentState == Bullet.States.parried):
+		print_debug("hit")
+		health -= 1
