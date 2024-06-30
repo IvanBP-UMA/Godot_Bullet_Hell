@@ -8,6 +8,8 @@ class_name Enemy
 var tween: Tween
 
 func _ready():
+	if (routine == null):
+		return
 	await executeRoutine(0)
 	if (routine.repeatInfinitely):
 		while true:
@@ -125,7 +127,7 @@ func getVectorToPlayer() -> Vector2:
 	var playerPos: Vector2 = get_tree().get_nodes_in_group("player")[0].global_position
 	return (playerPos-self.global_position).normalized()
 
-func _on_area_entered(area: Area2D):
+func _on_hitbox_area_entered(area):
 	if (area is Bullet && area.currentState == Bullet.States.parried):
 		print_debug("hit")
 		health -= 1

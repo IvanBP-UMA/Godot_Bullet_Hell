@@ -5,7 +5,7 @@ class_name Player
 @export var lives: int = 3
 @export var bombs: int = 3
 
-@onready var hitbox: Area2D = $Area2D
+@onready var hurtbox: Area2D = $Hurtbox
 @onready var sprite: Sprite2D = $Sprite
 @onready var attackHitbox: Area2D = $AttackHitbox
 
@@ -47,9 +47,10 @@ func attack() -> void:
 			area.direction = getDirectionToEnemy(area)
 			area.speed *= speedMultiplier
 			area.currentState = Bullet.States.parried
-		elif (area is Enemy):
+		elif (area.get_parent() is Enemy):
+			var enemy: Enemy = area.get_parent()
 			print_debug("hit")
-			area.health -= attackPower
+			enemy.health -= attackPower
 	
 	await get_tree().create_timer(0.3).timeout
 	sprite.modulate = Color(1,1,1,1)
@@ -78,8 +79,8 @@ func _on_area_2d_area_entered(area):
 		print("GAME OVER")
 		
 	sprite.modulate = Color("ff1e00")
-	hitbox.collision_mask = 2
+	hurtbox.set_collision_mask_value(1, false)
 	await get_tree().create_timer(1.5).timeout
-	hitbox.collision_mask = 1
+	hurtbox.set_collision_mask_value(1, true)
 	sprite.modulate = Color(1,1,1,1)
 	

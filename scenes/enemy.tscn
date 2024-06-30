@@ -1,21 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpwyjgocp55pp"]
+[gd_scene load_steps=5 format=3 uid="uid://cpwyjgocp55pp"]
 
 [ext_resource type="Script" path="res://scripts/nodes_scripts/enemy.gd" id="1_8vqk6"]
 [ext_resource type="Texture2D" uid="uid://begajc4b0kfxk" path="res://assets/Knuckles.png" id="2_r2rcp"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkvs2"]
+size = Vector2(20, 36)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qusau"]
-size = Vector2(37, 49)
+size = Vector2(36, 54)
 
 [node name="Enemy" type="Area2D"]
-collision_mask = 5
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_8vqk6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_r2rcp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_nkvs2")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_qusau")
 
 [node name="BulletZone" type="Area2D" parent="."]
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
