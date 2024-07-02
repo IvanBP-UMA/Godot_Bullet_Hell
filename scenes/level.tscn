@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcggl62fic84i"]
+[gd_scene load_steps=4 format=3 uid="uid://rpr4dcsxys22"]
 
-[ext_resource type="Script" path="res://scripts/nodes_scripts/level.gd" id="1_df24s"]
-[ext_resource type="PackedScene" uid="uid://gwebflaeoytd" path="res://scenes/player.tscn" id="2_lhnou"]
+[ext_resource type="PackedScene" uid="uid://gwebflaeoytd" path="res://scenes/player.tscn" id="1_baitu"]
+[ext_resource type="PackedScene" uid="uid://cpwyjgocp55pp" path="res://scenes/enemy.tscn" id="2_ylhkx"]
+[ext_resource type="Resource" uid="uid://ba4ni1w3l4100" path="res://predefined_resources/routines/four_corners.tres" id="3_8mm3r"]
 
 [node name="Level" type="Node2D"]
-script = ExtResource("1_df24s")
 
-[node name="BulletZone" type="Area2D" parent="." groups=["BulletZones"]]
+[node name="Player" parent="." instance=ExtResource("1_baitu")]
+position = Vector2(273, 328)
 
-[node name="Player" parent="." instance=ExtResource("2_lhnou")]
-position = Vector2(260, 320)
+[node name="Enemy" parent="." instance=ExtResource("2_ylhkx")]
+position = Vector2(33, 44)
+routine = ExtResource("3_8mm3r")
+
+[node name="Bullets" type="Area2D" parent="." groups=["BulletZones"]]

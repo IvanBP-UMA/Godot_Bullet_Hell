@@ -51,7 +51,6 @@ func attack() -> void:
 			bullet.currentState = Bullet.States.parried
 		elif (parent is Enemy):
 			var enemy: Enemy = parent
-			print_debug("hit")
 			enemy.health -= attackPower
 	
 	await get_tree().create_timer(0.3).timeout
@@ -74,7 +73,6 @@ func bomb() -> void:
 		bullet.queue_free()
 
 func _on_hurtbox_area_entered(area):
-	print("Ouch")
 	lives -= 1
 	if (lives == 0):
 		get_tree().paused = true

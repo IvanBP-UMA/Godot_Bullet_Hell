@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PositionalMovement" load_steps=2 format=3 uid="uid://bcat081fcsnhm"]
+
+[ext_resource type="Script" path="res://scripts/resources/action_resources/movements/postional_movement.gd" id="1_mousl"]
+
+[resource]
+script = ExtResource("1_mousl")
+finalPosition = Vector2(0, 0)
+definedPosition = 3
+movingTime = 2.0
+actionType = 2
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = false
+overlapTimer = 0.0

@@ -10,7 +10,7 @@ const horizontalOffset: int = 40
 
 @export var finalPosition: Vector2
 @export var definedPosition: definedPositions
-@export var movingTime: float
+@export var movingTime: float = 1
 
 func getCoordinates(definedPosition: definedPositions):
 	var coordinates: Vector2

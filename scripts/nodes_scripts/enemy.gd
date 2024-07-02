@@ -88,13 +88,11 @@ func spawnBullet(bulletSpecs: DirectionalAttack, parryable: bool) -> void:
 	var shape: Shape2D = bulletSpecs.shape
 	var speed: float = bulletSpecs.speed
 	var direction: Vector2 = bulletSpecs.getDirection().normalized()
-	var bullet: Bullet
+	var bullet: Bullet = preload("res://scenes/bullet.tscn").instantiate()
 	
 	match bulletSpecs.bulletType:
-		Attack.bulletTypes.normal:
-			bullet = preload("res://scenes/bullet.tscn").instantiate()
 		Attack.bulletTypes.math:
-			bullet = preload("res://scenes/math_bullet.tscn").instantiate()
+			bullet.set_script(load("res://scripts/nodes_scripts/math_bullet.gd"))
 			bullet.mathBulletSetUp(bulletSpecs.function, bulletSpecs.step)
 	
 	bullet.add_to_group("bullets")
@@ -130,5 +128,4 @@ func getVectorToPlayer() -> Vector2:
 func _on_hurtbox_area_entered(area):
 	var parent = area.get_parent()
 	if (parent is Bullet && parent.currentState == Bullet.States.parried):
-		print_debug("hit")
 		health -= 1

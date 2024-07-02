@@ -1,85 +1,15 @@
-[gd_resource type="Resource" script_class="ActionRoutine" load_steps=11 format=3 uid="uid://dyp22atabtm18"]
+[gd_resource type="Resource" script_class="ActionRoutine" load_steps=7 format=3 uid="uid://ba4ni1w3l4100"]
 
-[ext_resource type="Script" path="res://scripts/action_resources/directional_movement.gd" id="1_nyutw"]
-[ext_resource type="Resource" uid="uid://p3kef1c4th3j" path="res://predefined_resources/attacks/following_line.tres" id="2_aa0r0"]
-[ext_resource type="Script" path="res://scripts/action_resources/attacks/directional_attack.gd" id="2_p4cb0"]
-[ext_resource type="Script" path="res://scripts/action_resources/action_routine.gd" id="3_8j842"]
-
-[sub_resource type="Resource" id="Resource_0x8nh"]
-script = ExtResource("1_nyutw")
-direction = Vector2(1, 0)
-speed = 450.0
-movingTime = 1.0
-actionType = 0
-cooldownTime = 0.0
-repetitions = 1
-waitBeforeNext = false
-overlapTimer = 0.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_05x0r"]
-radius = 7.5
-
-[sub_resource type="Resource" id="Resource_3gpqp"]
-script = ExtResource("2_p4cb0")
-lines = 1
-rows = 25
-frequency = 0.1
-mainDirection = Vector2(0, 1)
-aimPlayer = false
-followPlayer = true
-frontFacing = false
-spinningPattern = false
-maxRotation = 6.28319
-reverseSpin = false
-parryMode = 0
-parryRows = 2
-bulletType = 0
-shape = SubResource("CircleShape2D_05x0r")
-speed = 3.0
-function = 0
-step = 0.1
-actionType = 1
-cooldownTime = 1.0
-repetitions = 1
-waitBeforeNext = true
-overlapTimer = 0.0
-
-[sub_resource type="Resource" id="Resource_6jjik"]
-script = ExtResource("1_nyutw")
-direction = Vector2(0, 1)
-speed = 300.0
-movingTime = 1.0
-actionType = 0
-cooldownTime = 0.0
-repetitions = 1
-waitBeforeNext = false
-overlapTimer = 0.0
-
-[sub_resource type="Resource" id="Resource_b05oy"]
-script = ExtResource("1_nyutw")
-direction = Vector2(-1, 0)
-speed = 450.0
-movingTime = 1.0
-actionType = 0
-cooldownTime = 0.0
-repetitions = 1
-waitBeforeNext = false
-overlapTimer = 0.0
-
-[sub_resource type="Resource" id="Resource_f1l3l"]
-script = ExtResource("1_nyutw")
-direction = Vector2(0, -1)
-speed = 300.0
-movingTime = 1.0
-actionType = 0
-cooldownTime = 0.0
-repetitions = 1
-waitBeforeNext = false
-overlapTimer = 0.0
+[ext_resource type="Resource" uid="uid://b6j1qhyn2v2aw" path="res://predefined_resources/movements/top_left.tres" id="1_5b0hv"]
+[ext_resource type="Resource" uid="uid://p3kef1c4th3j" path="res://predefined_resources/attacks/following_line.tres" id="2_or1rf"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="3_8j842"]
+[ext_resource type="Resource" uid="uid://bsathgwso0gp2" path="res://predefined_resources/movements/bottom_right.tres" id="3_fusfe"]
+[ext_resource type="Resource" uid="uid://bcat081fcsnhm" path="res://predefined_resources/movements/top_right.tres" id="3_jjxey"]
+[ext_resource type="Resource" uid="uid://crcpu2na8ebim" path="res://predefined_resources/movements/bottom_left.tres" id="4_wcja3"]
 
 [resource]
 script = ExtResource("3_8j842")
-actions = Array[Resource("res://scripts/action_resources/action.gd")]([SubResource("Resource_0x8nh"), SubResource("Resource_3gpqp"), SubResource("Resource_6jjik"), ExtResource("2_aa0r0"), SubResource("Resource_b05oy"), ExtResource("2_aa0r0"), SubResource("Resource_f1l3l"), ExtResource("2_aa0r0")])
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([ExtResource("3_jjxey"), ExtResource("2_or1rf"), ExtResource("3_fusfe"), ExtResource("2_or1rf"), ExtResource("4_wcja3"), ExtResource("2_or1rf"), ExtResource("1_5b0hv"), ExtResource("2_or1rf")])
 repeatInfinitely = true
 repeatFrom = 0
 repetitionCooldown = 1.0
