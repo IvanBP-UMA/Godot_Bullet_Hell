@@ -4,7 +4,7 @@ class_name Enemy
 @export var routine: ActionRoutine
 @export var health: int = 3
 @onready var bulletZone: Area2D = $BulletZone
-@onready var levelBullets: Area2D = self.get_parent().get_children()[0]
+@onready var levelBullets: Area2D = get_tree().get_nodes_in_group("BulletZones")[0]
 var tween: Tween
 
 func _ready():
@@ -13,7 +13,7 @@ func _ready():
 	await executeRoutine(0)
 	if (routine.repeatInfinitely):
 		while true:
-			await get_tree().create_timer(routine.repetitionCooldown).timeout
+			await get_tree().create_timer(routine.repetitionCooldown, false).timeout
 			await executeRoutine(routine.repeatFrom)
 
 func _process(delta):
@@ -22,14 +22,14 @@ func _process(delta):
 	for bullet in bulletZone.get_children():
 		bullet.reparent(levelBullets, true)
 
-func executeRoutine(startingIndex: int):
+func executeRoutine(startingIndex: int) -> void:
 	for i in routine.actions.size()-startingIndex:
 		var action: Action = routine.actions[i+startingIndex]
 		if (action.waitBeforeNext):
 			await executeAction(action)
 		else:
 			executeAction(action)
-			await get_tree().create_timer(action.overlapTimer).timeout
+			await get_tree().create_timer(action.overlapTimer, false).timeout
 
 func executeAction(action: Action) -> void:
 	var function: Callable
@@ -47,7 +47,7 @@ func executeAction(action: Action) -> void:
 	
 	for i in action.repetitions:
 		await function.call(action)
-		await get_tree().create_timer(action.cooldownTime).timeout
+		await get_tree().create_timer(action.cooldownTime, false).timeout
 
 func positionalMovement(movementSpecs: PositionalMovement) -> void:
 	#When using export variable of enum type, by default first element of enum is set
@@ -78,7 +78,7 @@ func shootDirectionalAttack(patternSpecs: DirectionalAttack) -> void:
 	for i in patternSpecs.rows:
 		if (patternSpecs.followPlayer):
 			patternSpecs.setMainDirection(getVectorToPlayer())
-		await get_tree().create_timer(patternSpecs.frequency).timeout
+		await get_tree().create_timer(patternSpecs.frequency, false).timeout
 		for j in patternSpecs.lines:
 			spawnBullet(patternSpecs, isParryable(patternSpecs, i))
 		if (patternSpecs.spinningPattern):
@@ -127,7 +127,8 @@ func getVectorToPlayer() -> Vector2:
 	var playerPos: Vector2 = get_tree().get_nodes_in_group("player")[0].global_position
 	return (playerPos-self.global_position).normalized()
 
-func _on_hitbox_area_entered(area):
-	if (area is Bullet && area.currentState == Bullet.States.parried):
+func _on_hurtbox_area_entered(area):
+	var parent = area.get_parent()
+	if (parent is Bullet && parent.currentState == Bullet.States.parried):
 		print_debug("hit")
 		health -= 1

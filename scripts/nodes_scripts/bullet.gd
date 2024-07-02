@@ -1,29 +1,31 @@
 extends Area2D
 class_name Bullet
 
-var hitbox: CollisionShape2D
-var sprite: Sprite2D
-var direction: Vector2
-var speed: float
-var graceMultiplier: float = 1.8
 enum States {default, parried}
-var currentState: States
+const GRACE_MULTIPLIER: float = 1.8
+
+@onready var hitboxShape: CollisionShape2D = $Hitbox/HitboxCollision
+@onready var hurtboxShape: CollisionShape2D = $Hurtbox/HurtboxCollision
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var currentState: States = States.default
 @onready var parentEnemy = self.get_parent()
 
+var direction: Vector2
+var speed: float
+
 func newBullet(shape: Shape2D, direction: Vector2, speed: float) -> void:
-	hitbox.shape = shape
+	hitboxShape.shape = shape
 	self.direction = direction
-	if (shape.get_class() == "RectangleShape2D"):
-		sprite.scale = Vector2(shape.size.x/sprite.texture.get_width() * graceMultiplier, shape.size.y/sprite.texture.get_height() * graceMultiplier)
-	else:
-		var scale = shape.radius*2/sprite.texture.get_width() * graceMultiplier
-		sprite.scale = Vector2(scale, scale)
-	self.speed = speed
 	
-func _ready():
-	hitbox = $CollisionShape2D
-	sprite = $Sprite2D
-	currentState = States.default
+	if (shape.get_class() == "RectangleShape2D"):
+		sprite.scale = Vector2(shape.size.x/sprite.texture.get_width() * GRACE_MULTIPLIER, shape.size.y/sprite.texture.get_height() * GRACE_MULTIPLIER)
+	else:
+		var scale = shape.radius*2/sprite.texture.get_width() * GRACE_MULTIPLIER
+		sprite.scale = Vector2(scale, scale)
+		
+	self.speed = speed
+	hurtboxShape.shape = RectangleShape2D.new()
+	hurtboxShape.shape.extents = Vector2(sprite.texture.get_width(), sprite.texture.get_height()) / GRACE_MULTIPLIER
 
 func _process(delta):
 	movementHandler()

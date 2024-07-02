@@ -43,12 +43,14 @@ func attack() -> void:
 	
 	var strikedObjects: Array[Area2D] = attackHitbox.get_overlapping_areas()
 	for area in strikedObjects:
-		if (area is Bullet && area.is_in_group("parryable")):
-			area.direction = getDirectionToEnemy(area)
-			area.speed *= speedMultiplier
-			area.currentState = Bullet.States.parried
-		elif (area.get_parent() is Enemy):
-			var enemy: Enemy = area.get_parent()
+		var parent = area.get_parent()
+		if (parent is Bullet && parent.is_in_group("parryable")):
+			var bullet: Bullet = parent
+			bullet.direction = getDirectionToEnemy(bullet)
+			bullet.speed *= speedMultiplier
+			bullet.currentState = Bullet.States.parried
+		elif (parent is Enemy):
+			var enemy: Enemy = parent
 			print_debug("hit")
 			enemy.health -= attackPower
 	
@@ -71,7 +73,7 @@ func bomb() -> void:
 	for bullet in bullets:
 		bullet.queue_free()
 
-func _on_area_2d_area_entered(area):
+func _on_hurtbox_area_entered(area):
 	print("Ouch")
 	lives -= 1
 	if (lives == 0):
@@ -80,7 +82,6 @@ func _on_area_2d_area_entered(area):
 		
 	sprite.modulate = Color("ff1e00")
 	hurtbox.set_collision_mask_value(1, false)
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.5, false).timeout
 	hurtbox.set_collision_mask_value(1, true)
 	sprite.modulate = Color(1,1,1,1)
-	

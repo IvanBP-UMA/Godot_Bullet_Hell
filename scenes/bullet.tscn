@@ -4,13 +4,23 @@
 [ext_resource type="Texture2D" uid="uid://bjp3bmu2rum4r" path="res://assets/gordo.png" id="2_3sy8s"]
 
 [node name="Bullet" type="Area2D"]
+collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_bokvu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_3sy8s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox"]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
