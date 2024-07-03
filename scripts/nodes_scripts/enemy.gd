@@ -1,15 +1,25 @@
 extends Area2D
 class_name Enemy
 
+const GRACE_MULTIPLIER = 0.9
+var health: int = 3
+
 @export var routine: ActionRoutine
-@export var health: int = 3
+@export var statsData: EnemyData
+
+@onready var sprite: Sprite2D = $Sprite
 @onready var bulletZone: Area2D = $BulletZone
+@onready var hitboxShape: CollisionShape2D = $Hitbox/HitboxCollision
+@onready var hurtboxShape: CollisionShape2D = $Hurtbox/HurtboxCollision
 @onready var levelBullets: Area2D = get_tree().get_nodes_in_group("BulletZones")[0]
+
 var tween: Tween
 
 func _ready():
+	setUpStats()
 	if (routine == null):
 		return
+	setSpawnPosition()
 	await executeRoutine(0)
 	if (routine.repeatInfinitely):
 		while true:
@@ -21,6 +31,21 @@ func _process(delta):
 		queue_free()
 	for bullet in bulletZone.get_children():
 		bullet.reparent(levelBullets, true)
+
+func setUpStats():
+	if (statsData == null):
+		return
+	health = statsData.health
+	sprite.texture = statsData.sprite
+	
+	hitboxShape.shape.extents = Vector2(sprite.texture.get_width()/2, sprite.texture.get_height()/2) * GRACE_MULTIPLIER
+	hurtboxShape.shape.extents = Vector2(sprite.texture.get_width()/2, sprite.texture.get_height()/2) / GRACE_MULTIPLIER
+
+func setSpawnPosition():
+	if (routine.spawnDefinedPosition != Positions.definedPositions.EMPTY):
+		self.global_position = Positions.getCoordinates(routine.spawnDefinedPosition)
+	else:
+		self.global_position = routine.spawnPosition
 
 func executeRoutine(startingIndex: int) -> void:
 	for i in routine.actions.size()-startingIndex:
@@ -51,8 +76,8 @@ func executeAction(action: Action) -> void:
 
 func positionalMovement(movementSpecs: PositionalMovement) -> void:
 	#When using export variable of enum type, by default first element of enum is set
-	if (movementSpecs.definedPosition != PositionalMovement.definedPositions.EMPTY):
-		movementSpecs.finalPosition = movementSpecs.getCoordinates(movementSpecs.definedPosition)
+	if (movementSpecs.definedPosition != Positions.definedPositions.EMPTY):
+		movementSpecs.finalPosition = Positions.getCoordinates(movementSpecs.definedPosition)
 	
 	if (tween):
 		tween.kill()
@@ -66,6 +91,7 @@ func directionalMovement(movementSpecs: DirectionalMovement) -> void:
 	tween = self.create_tween()
 	var finalPosition = position + (movementSpecs.direction.normalized() * movementSpecs.speed * movementSpecs.movingTime)
 	tween.tween_property(self, "global_position", finalPosition, movementSpecs.movingTime)
+	await tween.finished
 
 func newDirectionalAttack(patternSpecs: DirectionalAttack) -> void:
 	if (patternSpecs.aimPlayer):

@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpwyjgocp55pp"]
+[gd_scene load_steps=4 format=3 uid="uid://cpwyjgocp55pp"]
 
 [ext_resource type="Script" path="res://scripts/nodes_scripts/enemy.gd" id="1_8vqk6"]
-[ext_resource type="Texture2D" uid="uid://begajc4b0kfxk" path="res://assets/Knuckles.png" id="2_r2rcp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkvs2"]
 size = Vector2(20, 36)
@@ -14,8 +13,7 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_8vqk6")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_r2rcp")
+[node name="Sprite" type="Sprite2D" parent="."]
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 0

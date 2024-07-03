@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://rpr4dcsxys22"]
+[gd_scene load_steps=7 format=3 uid="uid://rpr4dcsxys22"]
 
 [ext_resource type="PackedScene" uid="uid://gwebflaeoytd" path="res://scenes/player.tscn" id="1_baitu"]
 [ext_resource type="PackedScene" uid="uid://cpwyjgocp55pp" path="res://scenes/enemy.tscn" id="2_ylhkx"]
-[ext_resource type="Resource" uid="uid://ba4ni1w3l4100" path="res://predefined_resources/routines/four_corners.tres" id="3_8mm3r"]
+[ext_resource type="Resource" uid="uid://ba4ni1w3l4100" path="res://predefined_resources/routines/four_corners.tres" id="3_s7snj"]
+[ext_resource type="Script" path="res://scripts/resources/enemyData.gd" id="4_nwll8"]
+[ext_resource type="Texture2D" uid="uid://cp61ltctdtqb2" path="res://assets/robotnik.png" id="4_yqqci"]
+
+[sub_resource type="Resource" id="Resource_s27k2"]
+script = ExtResource("4_nwll8")
+health = 2
+sprite = ExtResource("4_yqqci")
 
 [node name="Level" type="Node2D"]
 
@@ -10,7 +17,8 @@
 position = Vector2(273, 328)
 
 [node name="Enemy" parent="." instance=ExtResource("2_ylhkx")]
-position = Vector2(33, 44)
-routine = ExtResource("3_8mm3r")
+position = Vector2(265, 198)
+routine = ExtResource("3_s7snj")
+statsData = SubResource("Resource_s27k2")
 
 [node name="Bullets" type="Area2D" parent="." groups=["BulletZones"]]

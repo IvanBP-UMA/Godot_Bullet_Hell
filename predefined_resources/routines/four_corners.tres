@@ -14,3 +14,5 @@ repeatInfinitely = true
 repeatFrom = 0
 repetitionCooldown = 1.0
 randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 1

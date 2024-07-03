@@ -11,6 +11,10 @@ class_name ActionRoutine
 @export var repetitionCooldown: float = 1
 ## If checked, the action order will be randomized 
 @export var randomRoutineOrder: bool
+## Initial object position when spawned. Doesnt return to position on repetition
+@export var spawnPosition: Vector2
+## If option is selected, previous spawnPosition variable will be ignored
+@export var spawnDefinedPosition: Positions.definedPositions
 
 func _init():
 	clamp(repeatFrom, 0, actions.size())
