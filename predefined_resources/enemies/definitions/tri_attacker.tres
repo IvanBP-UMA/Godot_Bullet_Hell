@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=4 format=3 uid="uid://lexs5nktemgr"]
+
+[ext_resource type="Resource" uid="uid://k6y2sjicawxa" path="res://predefined_resources/routines/right_tri_attack.tres" id="1_h1hpj"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_definition.gd" id="1_in3sb"]
+[ext_resource type="Resource" uid="uid://cb5emvhgh5u4c" path="res://predefined_resources/enemies/stats/default_stats.tres" id="3_ceh8f"]
+
+[resource]
+script = ExtResource("1_in3sb")
+stats = ExtResource("3_ceh8f")
+routine = ExtResource("1_h1hpj")

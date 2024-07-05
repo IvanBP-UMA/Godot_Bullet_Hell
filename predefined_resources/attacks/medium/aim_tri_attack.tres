@@ -1,17 +1,17 @@
-[gd_resource type="Resource" script_class="DirectionalAttack" load_steps=3 format=3 uid="uid://cn5uh1jicqiph"]
+[gd_resource type="Resource" script_class="DirectionalAttack" load_steps=3 format=3 uid="uid://cmxolp3l6bfmi"]
 
-[ext_resource type="Script" path="res://scripts/resources/action_resources/attacks/directional_attack.gd" id="1_ywrwf"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/attacks/directional_attack.gd" id="1_vona5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gnlne"]
 radius = 4.0
 
 [resource]
-script = ExtResource("1_ywrwf")
+script = ExtResource("1_vona5")
 lines = 3
 rows = 8
 frequency = 0.15
 mainDirection = Vector2(0, 1)
-aimPlayer = false
+aimPlayer = true
 followPlayer = false
 frontFacing = true
 spinningPattern = false

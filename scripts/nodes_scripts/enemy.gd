@@ -49,7 +49,7 @@ func setSpawnPosition():
 
 func executeRoutine(startingIndex: int) -> void:
 	for i in routine.actions.size()-startingIndex:
-		var action: Action = routine.actions[i+startingIndex]
+		var action: Action = routine.actions[i+startingIndex].duplicate(true)
 		if (action.waitBeforeNext):
 			await executeAction(action)
 		else:
@@ -76,13 +76,14 @@ func executeAction(action: Action) -> void:
 
 func positionalMovement(movementSpecs: PositionalMovement) -> void:
 	#When using export variable of enum type, by default first element of enum is set
+	var finalPosition: Vector2 = movementSpecs.finalPosition
 	if (movementSpecs.definedPosition != Positions.definedPositions.EMPTY):
-		movementSpecs.finalPosition = Positions.getCoordinates(movementSpecs.definedPosition)
+		finalPosition = Positions.getCoordinates(movementSpecs.definedPosition)
 	
 	if (tween):
 		tween.kill()
 	tween = self.create_tween()
-	tween.tween_property(self, "global_position", movementSpecs.finalPosition, movementSpecs.movingTime)
+	tween.tween_property(self, "global_position", finalPosition, movementSpecs.movingTime)
 	await tween.finished
 
 func directionalMovement(movementSpecs: DirectionalMovement) -> void:

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=7 format=3 uid="uid://bcxflq8dbpao2"]
+
+[ext_resource type="Resource" uid="uid://lexs5nktemgr" path="res://predefined_resources/enemies/definitions/tri_attacker.tres" id="1_3q83b"]
+[ext_resource type="Resource" uid="uid://cht26vh46qnpr" path="res://predefined_resources/routines/left_tri_attack.tres" id="2_pd0xy"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_definition.gd" id="3_hgmmp"]
+[ext_resource type="Resource" uid="uid://cb5emvhgh5u4c" path="res://predefined_resources/enemies/stats/default_stats.tres" id="4_2ri8t"]
+[ext_resource type="Script" path="res://scripts/resources/level/enemy_wave.gd" id="5_edp5w"]
+
+[sub_resource type="Resource" id="Resource_d83j3"]
+script = ExtResource("3_hgmmp")
+stats = ExtResource("4_2ri8t")
+routine = ExtResource("2_pd0xy")
+
+[resource]
+script = ExtResource("5_edp5w")
+enemies = Array[ExtResource("3_hgmmp")]([ExtResource("1_3q83b"), SubResource("Resource_d83j3")])
+waveTime = 10
+infiniteWave = true
+nextEventWait = 1

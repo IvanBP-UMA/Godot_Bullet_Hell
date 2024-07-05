@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ActionRoutine" load_steps=7 format=3 uid="uid://k6y2sjicawxa"]
+
+[ext_resource type="Script" path="res://scripts/resources/action_resources/movements/postional_movement.gd" id="1_l7ayx"]
+[ext_resource type="Resource" uid="uid://cn5uh1jicqiph" path="res://predefined_resources/attacks/medium/tri_attack.tres" id="2_04qmb"]
+[ext_resource type="Resource" uid="uid://cmxolp3l6bfmi" path="res://predefined_resources/attacks/medium/aim_tri_attack.tres" id="2_e8tvi"]
+[ext_resource type="Resource" uid="uid://b6j1qhyn2v2aw" path="res://predefined_resources/movements/top_left.tres" id="3_wavq2"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="4_nms1r"]
+
+[sub_resource type="Resource" id="Resource_2y86y"]
+script = ExtResource("1_l7ayx")
+finalPosition = Vector2(0, 0)
+definedPosition = 3
+movingTime = 1.0
+actionType = 2
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[resource]
+script = ExtResource("4_nms1r")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([SubResource("Resource_2y86y"), ExtResource("2_e8tvi"), ExtResource("3_wavq2"), ExtResource("2_04qmb")])
+repeatInfinitely = true
+repeatFrom = 0
+repetitionCooldown = 1.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 12

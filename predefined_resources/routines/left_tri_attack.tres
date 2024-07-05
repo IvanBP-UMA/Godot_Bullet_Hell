@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ActionRoutine" load_steps=7 format=3 uid="uid://cht26vh46qnpr"]
+
+[ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="1_gnbmx"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/movements/postional_movement.gd" id="1_if166"]
+[ext_resource type="Resource" uid="uid://cmxolp3l6bfmi" path="res://predefined_resources/attacks/medium/aim_tri_attack.tres" id="2_3qxwj"]
+[ext_resource type="Resource" uid="uid://cn5uh1jicqiph" path="res://predefined_resources/attacks/medium/tri_attack.tres" id="2_grgb3"]
+[ext_resource type="Resource" uid="uid://bcat081fcsnhm" path="res://predefined_resources/movements/top_right.tres" id="3_0aogn"]
+
+[sub_resource type="Resource" id="Resource_2y86y"]
+script = ExtResource("1_if166")
+finalPosition = Vector2(0, 0)
+definedPosition = 1
+movingTime = 1.0
+actionType = 2
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[resource]
+script = ExtResource("1_gnbmx")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([SubResource("Resource_2y86y"), ExtResource("2_3qxwj"), ExtResource("3_0aogn"), ExtResource("2_grgb3")])
+repeatInfinitely = true
+repeatFrom = 0
+repetitionCooldown = 1.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 10
