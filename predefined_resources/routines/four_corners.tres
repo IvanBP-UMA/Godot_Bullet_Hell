@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ActionRoutine" load_steps=7 format=3 uid="uid://ba4ni1w3l4100"]
 
 [ext_resource type="Resource" uid="uid://b6j1qhyn2v2aw" path="res://predefined_resources/movements/top_left.tres" id="1_5b0hv"]
-[ext_resource type="Resource" uid="uid://p3kef1c4th3j" path="res://predefined_resources/attacks/following_line.tres" id="2_or1rf"]
+[ext_resource type="Resource" uid="uid://p3kef1c4th3j" path="res://predefined_resources/attacks/uncategorised/following_line.tres" id="2_or1rf"]
 [ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="3_8j842"]
 [ext_resource type="Resource" uid="uid://bsathgwso0gp2" path="res://predefined_resources/movements/bottom_right.tres" id="3_fusfe"]
 [ext_resource type="Resource" uid="uid://bcat081fcsnhm" path="res://predefined_resources/movements/top_right.tres" id="3_jjxey"]
@@ -15,4 +15,4 @@ repeatFrom = 0
 repetitionCooldown = 1.0
 randomRoutineOrder = false
 spawnPosition = Vector2(0, 0)
-spawnDefinedPosition = 1
+spawnDefinedPosition = 7

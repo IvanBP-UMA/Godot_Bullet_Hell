@@ -1,24 +1,53 @@
-[gd_scene load_steps=7 format=3 uid="uid://rpr4dcsxys22"]
+[gd_scene load_steps=14 format=3 uid="uid://rpr4dcsxys22"]
 
 [ext_resource type="PackedScene" uid="uid://gwebflaeoytd" path="res://scenes/player.tscn" id="1_baitu"]
-[ext_resource type="PackedScene" uid="uid://cpwyjgocp55pp" path="res://scenes/enemy.tscn" id="2_ylhkx"]
-[ext_resource type="Resource" uid="uid://ba4ni1w3l4100" path="res://predefined_resources/routines/four_corners.tres" id="3_s7snj"]
-[ext_resource type="Script" path="res://scripts/resources/enemyData.gd" id="4_nwll8"]
-[ext_resource type="Texture2D" uid="uid://cp61ltctdtqb2" path="res://assets/robotnik.png" id="4_yqqci"]
+[ext_resource type="Script" path="res://scripts/nodes_scripts/level.gd" id="1_wg1fb"]
+[ext_resource type="Resource" uid="uid://tk5ch1dl2lij" path="res://predefined_resources/attacks/hard/spinning_hex.tres" id="2_m0pch"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_definition.gd" id="3_asaws"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="4_nwll8"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="6_y0456"]
+[ext_resource type="Texture2D" uid="uid://begajc4b0kfxk" path="res://assets/Knuckles.png" id="7_qfgvt"]
+[ext_resource type="Script" path="res://scripts/resources/level/enemy_wave.gd" id="8_ll53s"]
+[ext_resource type="Script" path="res://scripts/nodes_scripts/enemies_zone.gd" id="11_ru4nw"]
 
-[sub_resource type="Resource" id="Resource_s27k2"]
+[sub_resource type="Resource" id="Resource_doobw"]
+script = ExtResource("6_y0456")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([ExtResource("2_m0pch")])
+repeatInfinitely = true
+repeatFrom = 0
+repetitionCooldown = 1.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 5
+
+[sub_resource type="Resource" id="Resource_krpxx"]
 script = ExtResource("4_nwll8")
-health = 2
-sprite = ExtResource("4_yqqci")
+health = 1
+sprite = ExtResource("7_qfgvt")
+
+[sub_resource type="Resource" id="Resource_kilf4"]
+script = ExtResource("3_asaws")
+stats = SubResource("Resource_krpxx")
+routine = SubResource("Resource_doobw")
+
+[sub_resource type="Resource" id="Resource_m7x41"]
+script = ExtResource("8_ll53s")
+enemies = Array[ExtResource("3_asaws")]([SubResource("Resource_kilf4")])
+waveTime = 10
+infiniteWave = true
+nextEventWait = 0
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_wg1fb")
+events = Array[Resource("res://scripts/resources/level/level_event.gd")]([SubResource("Resource_m7x41")])
 
 [node name="Player" parent="." instance=ExtResource("1_baitu")]
 position = Vector2(273, 328)
 
-[node name="Enemy" parent="." instance=ExtResource("2_ylhkx")]
-position = Vector2(265, 198)
-routine = ExtResource("3_s7snj")
-statsData = SubResource("Resource_s27k2")
-
 [node name="Bullets" type="Area2D" parent="." groups=["BulletZones"]]
+
+[node name="Enemies" type="Area2D" parent="."]
+script = ExtResource("11_ru4nw")
+
+[connection signal="child_exiting_tree" from="Enemies" to="Enemies" method="_on_child_exiting_tree"]
+[connection signal="enemies_deleted" from="Enemies" to="." method="_on_enemies_enemies_deleted"]

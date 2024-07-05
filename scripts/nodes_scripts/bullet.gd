@@ -24,8 +24,8 @@ func newBullet(shape: Shape2D, direction: Vector2, speed: float) -> void:
 		sprite.scale = Vector2(scale, scale)
 		
 	self.speed = speed
-	hurtboxShape.shape = RectangleShape2D.new()
-	hurtboxShape.shape.extents = Vector2(sprite.texture.get_width(), sprite.texture.get_height()) / GRACE_MULTIPLIER
+	hurtboxShape.shape = CircleShape2D.new()
+	hurtboxShape.shape.radius = sprite.texture.get_width()/2
 
 func _process(delta):
 	movementHandler()

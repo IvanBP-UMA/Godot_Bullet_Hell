@@ -5,7 +5,7 @@ const GRACE_MULTIPLIER = 0.9
 var health: int = 3
 
 @export var routine: ActionRoutine
-@export var statsData: EnemyData
+@export var statsData: EnemyStats
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var bulletZone: Area2D = $BulletZone

@@ -2,10 +2,18 @@ extends Node
 
 enum definedPositions {EMPTY, TOP_LEFT, TOP_CENTER, TOP_RIGHT, 
 						MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT,
-						BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT}
+						BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT,
+						OVERTOP_LEFT, OVERTOP_CENTER, OVERTOP_RIGHT,
+						OVERBOTTOM_LEFT, OVERBOTTOM_CENTER, OVERBOTTOM_RIGHT,
+						OVERLEFT_TOP, OVERLEFT_MIDDLE, OVERLEFT_BOTTOM,
+						OVERRIGHT_TOP, OVERRIGHT_MIDDLE, OVERRIHT_BOTTOM}
+						
 const viewportSize = Vector2(512, 384)
 const verticalOffset: int = 30
 const horizontalOffset: int = 40
+
+const overVerticalMargin: int = 60
+const overHorizontalMargin: int = 80
 
 func getCoordinates(definedPosition: definedPositions):
 	var coordinates: Vector2
@@ -28,5 +36,30 @@ func getCoordinates(definedPosition: definedPositions):
 			coordinates = Vector2(viewportSize.x/2, viewportSize.y - verticalOffset)
 		definedPositions.BOTTOM_RIGHT:
 			coordinates = viewportSize - Vector2(horizontalOffset, verticalOffset)
+		definedPositions.OVERTOP_LEFT:
+			coordinates = Vector2(horizontalOffset, -overVerticalMargin)
+		definedPositions.OVERTOP_CENTER:
+			coordinates = Vector2(viewportSize.x/2, -overVerticalMargin)
+		definedPositions.OVERTOP_RIGHT:
+			coordinates = Vector2(viewportSize.x - horizontalOffset, -overVerticalMargin)
+		definedPositions.OVERBOTTOM_LEFT:
+			coordinates = Vector2(horizontalOffset, viewportSize.y + overVerticalMargin)
+		definedPositions.OVERBOTTOM_CENTER:
+			coordinates = Vector2(viewportSize.x/2, viewportSize.y + overVerticalMargin)
+		definedPositions.OVERBOTTOM_RIGHT:
+			coordinates = Vector2(viewportSize.x - horizontalOffset, viewportSize.y + overVerticalMargin)
+		definedPositions.OVERLEFT_TOP:
+			coordinates = Vector2(-overHorizontalMargin, verticalOffset)
+		definedPositions.OVERLEFT_MIDDLE:
+			coordinates = Vector2(-overHorizontalMargin, viewportSize.y/2)
+		definedPositions.OVERLEFT_BOTTOM:
+			coordinates = Vector2(-overHorizontalMargin, viewportSize.y - verticalOffset)
+		definedPositions.OVERRIGHT_TOP:
+			coordinates = Vector2(viewportSize.x + overHorizontalMargin, verticalOffset)
+		definedPositions.OVERRIGHT_MIDDLE:
+			coordinates = Vector2(viewportSize.x + overHorizontalMargin, viewportSize.y/2)
+		definedPositions.OVERRIHT_BOTTOM:
+			coordinates = Vector2(viewportSize.x + overHorizontalMargin, viewportSize.y - verticalOffset)
+		
 	
 	return coordinates

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="DirectionalAttack" load_steps=3 format=3 uid="uid://c5wi288viqc7q"]
+
+[ext_resource type="Script" path="res://scripts/resources/action_resources/attacks/directional_attack.gd" id="1_ppsbv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_05x0r"]
+radius = 7.5
+
+[resource]
+script = ExtResource("1_ppsbv")
+lines = 1
+rows = 10
+frequency = 0.2
+mainDirection = Vector2(0, 1)
+aimPlayer = false
+followPlayer = true
+frontFacing = false
+spinningPattern = false
+maxRotation = 6.28319
+reverseSpin = false
+parryMode = 1
+parryRows = 3
+bulletType = 0
+shape = SubResource("CircleShape2D_05x0r")
+speed = 2.5
+function = 0
+step = 0.1
+actionType = 1
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
