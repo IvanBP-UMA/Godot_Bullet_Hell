@@ -1,9 +1,7 @@
 [gd_resource type="Resource" script_class="DirectionalAttack" load_steps=3 format=3 uid="uid://b06v0kvscwjbi"]
 
 [ext_resource type="Script" path="res://scripts/resources/action_resources/attacks/directional_attack.gd" id="1_xv7fo"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_gnlne"]
-radius = 5.0
+[ext_resource type="Shape2D" uid="uid://cqb58xhbgtvli" path="res://predefined_resources/default_circle_shape.tres" id="2_68dtn"]
 
 [resource]
 script = ExtResource("1_xv7fo")
@@ -20,8 +18,8 @@ reverseSpin = false
 parryMode = 0
 parryRows = 2
 bulletType = 0
-shape = SubResource("CircleShape2D_gnlne")
-speed = 2.5
+shape = ExtResource("2_68dtn")
+speed = 5.0
 function = 0
 step = 0.1
 actionType = 1

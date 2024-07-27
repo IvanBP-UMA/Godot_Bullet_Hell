@@ -1,12 +1,12 @@
 extends CharacterBody2D
 class_name Player
 
-@export var speed: float = 200
+@export var speed: float = 600
 @export var lives: int = 3
 @export var bombs: int = 3
 
 @onready var hurtbox: Area2D = $Hurtbox
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = $Sprite
 @onready var attackHitbox: Area2D = $AttackHitbox
 
 var direction: Vector2 = Vector2.ZERO
@@ -14,6 +14,8 @@ var isAttacking: bool = false
 var speedMultiplier: float = 3
 var attackPower: int = 2
 
+func _ready():
+	sprite.play("idle")
 
 func _physics_process(delta):
 	if Input.is_action_pressed("moveLeft"):

@@ -7,7 +7,7 @@ var health: int = 3
 @export var routine: ActionRoutine
 @export var statsData: EnemyStats
 
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = $Sprite
 @onready var bulletZone: Area2D = $BulletZone
 @onready var hitboxShape: CollisionShape2D = $Hitbox/HitboxCollision
 @onready var hurtboxShape: CollisionShape2D = $Hurtbox/HurtboxCollision
@@ -17,6 +17,7 @@ var tween: Tween
 
 func _ready():
 	setUpStats()
+	sprite.play("default")
 	if (routine == null):
 		return
 	setSpawnPosition()
@@ -36,11 +37,16 @@ func setUpStats():
 	if (statsData == null):
 		return
 	health = statsData.health
+	
+	##Code dedicated to automatically modify hitbox size based on sprite
+	##Will have to be chang eto accomodate bird shapes
+	'''
 	sprite.texture = statsData.sprite
 	
 	hitboxShape.shape.extents = Vector2(sprite.texture.get_width()/2, sprite.texture.get_height()/2) * GRACE_MULTIPLIER
 	hurtboxShape.shape.extents = Vector2(sprite.texture.get_width()/2, sprite.texture.get_height()/2) / GRACE_MULTIPLIER
-
+	'''
+	
 func setSpawnPosition():
 	if (routine.spawnDefinedPosition != Positions.definedPositions.EMPTY):
 		self.global_position = Positions.getCoordinates(routine.spawnDefinedPosition)

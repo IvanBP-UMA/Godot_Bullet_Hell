@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=3 format=3 uid="uid://7d8fmkd6almw"]
+
+[ext_resource type="Script" path="res://scripts/resources/level/enemy_wave.gd" id="1_17bcm"]
+[ext_resource type="Resource" uid="uid://cjwybfc1jlncl" path="res://predefined_resources/enemies/definitions/follower_line(easy).tres" id="1_i0sp3"]
+
+[resource]
+script = ExtResource("1_17bcm")
+enemies = Array[Resource("res://scripts/resources/enemy_definition.gd")]([ExtResource("1_i0sp3")])
+waveTime = 10
+infiniteWave = true
+nextEventWait = 1

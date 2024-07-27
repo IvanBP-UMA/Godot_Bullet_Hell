@@ -2,7 +2,7 @@ extends Area2D
 class_name Bullet
 
 enum States {default, parried}
-const GRACE_MULTIPLIER: float = 1.8
+const GRACE_MULTIPLIER: float = 1.2
 
 @onready var hitboxShape: CollisionShape2D = $Hitbox/HitboxCollision
 @onready var hurtboxShape: CollisionShape2D = $Hurtbox/HurtboxCollision
@@ -25,7 +25,7 @@ func newBullet(shape: Shape2D, direction: Vector2, speed: float) -> void:
 		
 	self.speed = speed
 	hurtboxShape.shape = CircleShape2D.new()
-	hurtboxShape.shape.radius = sprite.texture.get_width()/2
+	hurtboxShape.shape.radius = sprite.texture.get_width()/GRACE_MULTIPLIER
 
 func _process(delta):
 	movementHandler()

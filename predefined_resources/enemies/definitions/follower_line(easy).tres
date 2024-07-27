@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=4 format=3 uid="uid://cjwybfc1jlncl"]
+
+[ext_resource type="Resource" uid="uid://b7aehhtdh4c67" path="res://predefined_resources/routines/four_corners(easy).tres" id="1_8f786"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_definition.gd" id="1_ylpc1"]
+[ext_resource type="Resource" uid="uid://cb5emvhgh5u4c" path="res://predefined_resources/enemies/stats/default_stats.tres" id="3_rddcv"]
+
+[resource]
+script = ExtResource("1_ylpc1")
+stats = ExtResource("3_rddcv")
+routine = ExtResource("1_8f786")

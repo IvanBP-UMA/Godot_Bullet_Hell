@@ -1,24 +1,128 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpwyjgocp55pp"]
+[gd_scene load_steps=19 format=3 uid="uid://cpwyjgocp55pp"]
 
 [ext_resource type="Script" path="res://scripts/nodes_scripts/enemy.gd" id="1_8vqk6"]
+[ext_resource type="Texture2D" uid="uid://bjghdmawfkc38" path="res://assets/enemySpritesheet.png" id="2_raqxx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7ocb"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(0, 0, 314, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46wjx"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(314, 0, 314, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m5jm"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(628, 0, 314, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxvcr"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(942, 0, 314, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n6kw"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(0, 304, 314, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2w5h"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(314, 304, 314, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2t3iv"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(628, 304, 314, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrmeb"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(942, 304, 314, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55dtb"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(0, 608, 314, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onq5d"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(314, 608, 314, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px6jq"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(628, 608, 314, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbaar"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(942, 608, 314, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkfa8"]
+atlas = ExtResource("2_raqxx")
+region = Rect2(0, 912, 314, 304)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dg8je"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7ocb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46wjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m5jm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxvcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n6kw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2w5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2t3iv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrmeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55dtb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onq5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px6jq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbaar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkfa8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 36.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkvs2"]
-size = Vector2(20, 36)
+size = Vector2(65, 181)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qusau"]
-size = Vector2(36, 54)
+size = Vector2(105, 216)
 
 [node name="Enemy" type="Area2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_8vqk6")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="BulletZone" type="Area2D" parent="."]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dg8je")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 0
 
 [node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-0.5, -45.5)
 shape = SubResource("RectangleShape2D_nkvs2")
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -26,8 +130,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -45)
 shape = SubResource("RectangleShape2D_qusau")
-
-[node name="BulletZone" type="Area2D" parent="."]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

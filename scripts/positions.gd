@@ -8,9 +8,9 @@ enum definedPositions {EMPTY, TOP_LEFT, TOP_CENTER, TOP_RIGHT,
 						OVERLEFT_TOP, OVERLEFT_MIDDLE, OVERLEFT_BOTTOM,
 						OVERRIGHT_TOP, OVERRIGHT_MIDDLE, OVERRIHT_BOTTOM}
 						
-const viewportSize = Vector2(512, 384)
-const verticalOffset: int = 30
-const horizontalOffset: int = 40
+const viewportSize = Vector2(1920, 1080)
+const verticalOffset: int = 150
+const horizontalOffset: int = 170
 
 const overVerticalMargin: int = 60
 const overHorizontalMargin: int = 80

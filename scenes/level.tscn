@@ -1,21 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://rpr4dcsxys22"]
+[gd_scene load_steps=8 format=3 uid="uid://rpr4dcsxys22"]
 
 [ext_resource type="PackedScene" uid="uid://gwebflaeoytd" path="res://scenes/player.tscn" id="1_baitu"]
 [ext_resource type="Script" path="res://scripts/nodes_scripts/level.gd" id="1_wg1fb"]
+[ext_resource type="Resource" uid="uid://7d8fmkd6almw" path="res://predefined_resources/level_events/enemy_waves/follower(easy).tres" id="2_7wcfh"]
 [ext_resource type="Resource" uid="uid://bcxflq8dbpao2" path="res://predefined_resources/level_events/enemy_waves/dual_tri_attacker.tres" id="2_v865e"]
+[ext_resource type="Texture2D" uid="uid://clnvw3xgwht5f" path="res://assets/standin.jpg" id="4_ml62m"]
 [ext_resource type="Script" path="res://scripts/nodes_scripts/enemies_zone.gd" id="11_ru4nw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uy813"]
+size = Vector2(66, 1079.5)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_wg1fb")
-events = Array[Resource("res://scripts/resources/level/level_event.gd")]([ExtResource("2_v865e")])
+events = Array[Resource("res://scripts/resources/level/level_event.gd")]([ExtResource("2_v865e"), ExtResource("2_7wcfh")])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1919.0
+offset_bottom = 1080.0
+texture = ExtResource("4_ml62m")
 
 [node name="Player" parent="." instance=ExtResource("1_baitu")]
-position = Vector2(273, 328)
+position = Vector2(905, 953)
 
 [node name="Bullets" type="Area2D" parent="." groups=["BulletZones"]]
 
 [node name="Enemies" type="Area2D" parent="."]
 script = ExtResource("11_ru4nw")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-33, 540.75)
+shape = SubResource("RectangleShape2D_uy813")
 
 [connection signal="child_exiting_tree" from="Enemies" to="Enemies" method="_on_child_exiting_tree"]
 [connection signal="enemies_deleted" from="Enemies" to="." method="_on_enemies_enemies_deleted"]
