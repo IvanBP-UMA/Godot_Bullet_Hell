@@ -6,9 +6,9 @@
 script = ExtResource("1_3060q")
 finalPosition = Vector2(0, 0)
 definedPosition = 7
-movingTime = 2.0
+movingTime = 1.0
 actionType = 2
-cooldownTime = 1.0
+cooldownTime = 0.0
 repetitions = 1
 waitBeforeNext = false
 overlapTimer = 0.0

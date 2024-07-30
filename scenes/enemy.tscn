@@ -106,7 +106,7 @@ animations = [{
 size = Vector2(65, 181)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qusau"]
-size = Vector2(105, 216)
+size = Vector2(133, 211)
 
 [node name="Enemy" type="Area2D"]
 collision_layer = 0
@@ -117,6 +117,8 @@ script = ExtResource("1_8vqk6")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dg8je")
+frame = 5
+frame_progress = 0.693936
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 0
@@ -130,7 +132,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -45)
+position = Vector2(-0.5, -45.5)
 shape = SubResource("RectangleShape2D_qusau")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

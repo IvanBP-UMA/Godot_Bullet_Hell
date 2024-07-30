@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://cb5emvhgh5u4c"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=4 format=3 uid="uid://cb5emvhgh5u4c"]
 
 [ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="1_1cclq"]
+[ext_resource type="JSON" path="res://predefined_resources/json/sfx/default_enemy_sfx.json" id="2_6bt8q"]
 [ext_resource type="Texture2D" uid="uid://begajc4b0kfxk" path="res://assets/Knuckles.png" id="2_q6a67"]
 
 [resource]
 script = ExtResource("1_1cclq")
 health = 1
 sprite = ExtResource("2_q6a67")
+sfx = ExtResource("2_6bt8q")

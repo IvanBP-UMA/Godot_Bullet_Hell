@@ -1,39 +1,160 @@
-[gd_scene load_steps=8 format=3 uid="uid://rpr4dcsxys22"]
+[gd_scene load_steps=38 format=3 uid="uid://rpr4dcsxys22"]
 
 [ext_resource type="PackedScene" uid="uid://gwebflaeoytd" path="res://scenes/player.tscn" id="1_baitu"]
 [ext_resource type="Script" path="res://scripts/nodes_scripts/level.gd" id="1_wg1fb"]
 [ext_resource type="Resource" uid="uid://7d8fmkd6almw" path="res://predefined_resources/level_events/enemy_waves/follower(easy).tres" id="2_7wcfh"]
+[ext_resource type="Resource" uid="uid://karbaanhwwwg" path="res://predefined_resources/routines/attack_tutorial.tres" id="2_p0ug3"]
 [ext_resource type="Resource" uid="uid://bcxflq8dbpao2" path="res://predefined_resources/level_events/enemy_waves/dual_tri_attacker.tres" id="2_v865e"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_definition.gd" id="3_0sbc0"]
+[ext_resource type="Resource" uid="uid://bcat081fcsnhm" path="res://predefined_resources/movements/top_right.tres" id="3_difld"]
+[ext_resource type="Resource" uid="uid://cb5emvhgh5u4c" path="res://predefined_resources/enemies/stats/default_stats.tres" id="4_8i7uj"]
 [ext_resource type="Texture2D" uid="uid://clnvw3xgwht5f" path="res://assets/standin.jpg" id="4_ml62m"]
+[ext_resource type="Resource" uid="uid://c5wi288viqc7q" path="res://predefined_resources/attacks/easy/following_line(easy).tres" id="4_xnupl"]
+[ext_resource type="Resource" uid="uid://bsathgwso0gp2" path="res://predefined_resources/movements/bottom_right.tres" id="5_owjld"]
+[ext_resource type="Script" path="res://scripts/resources/level/enemy_wave.gd" id="5_siy7a"]
+[ext_resource type="Resource" uid="uid://b50y0gr80hwo0" path="res://predefined_resources/routines/parry_tutorial.tres" id="6_jv7ta"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="6_ltd4g"]
+[ext_resource type="Resource" uid="uid://crcpu2na8ebim" path="res://predefined_resources/movements/bottom_left.tres" id="6_rsf7n"]
+[ext_resource type="Resource" uid="uid://b6j1qhyn2v2aw" path="res://predefined_resources/movements/top_left.tres" id="7_bk8op"]
+[ext_resource type="Texture2D" uid="uid://begajc4b0kfxk" path="res://assets/Knuckles.png" id="7_rkdrf"]
+[ext_resource type="Resource" uid="uid://cjwybfc1jlncl" path="res://predefined_resources/enemies/definitions/follower_line(easy).tres" id="8_4xda0"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="8_sojma"]
 [ext_resource type="Script" path="res://scripts/nodes_scripts/enemies_zone.gd" id="11_ru4nw"]
+[ext_resource type="Resource" uid="uid://cxhxi5kxbvdg" path="res://predefined_resources/routines/hex_spinner.tres" id="15_wxth8"]
+[ext_resource type="JSON" path="res://predefined_resources/json/sfx/default_enemy_sfx.json" id="17_lgtt1"]
+[ext_resource type="AudioStream" uid="uid://d1lr3psaoqqid" path="res://assets/music/029 - Apple Woods - (Pokémon Mystery Dungeon - Explorers of Sky).mp3" id="23_rgp0s"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uy813"]
-size = Vector2(66, 1079.5)
+[sub_resource type="Resource" id="Resource_i1aqo"]
+script = ExtResource("3_0sbc0")
+stats = ExtResource("4_8i7uj")
+routine = ExtResource("6_jv7ta")
+
+[sub_resource type="Resource" id="Resource_4nyq4"]
+script = ExtResource("5_siy7a")
+enemies = Array[ExtResource("3_0sbc0")]([SubResource("Resource_i1aqo")])
+waveTime = 10
+infiniteWave = true
+nextEventWait = 1
+
+[sub_resource type="Resource" id="Resource_m360y"]
+script = ExtResource("3_0sbc0")
+stats = ExtResource("4_8i7uj")
+routine = ExtResource("2_p0ug3")
+
+[sub_resource type="Resource" id="Resource_2v1ar"]
+script = ExtResource("5_siy7a")
+enemies = Array[ExtResource("3_0sbc0")]([SubResource("Resource_m360y")])
+waveTime = 10
+infiniteWave = true
+nextEventWait = 1
+
+[sub_resource type="Resource" id="Resource_737p6"]
+script = ExtResource("8_sojma")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([ExtResource("3_difld"), ExtResource("4_xnupl"), ExtResource("5_owjld"), ExtResource("4_xnupl"), ExtResource("6_rsf7n"), ExtResource("4_xnupl"), ExtResource("7_bk8op"), ExtResource("4_xnupl")])
+repeatInfinitely = true
+repeatFrom = 0
+repetitionCooldown = 0.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 16
+
+[sub_resource type="Resource" id="Resource_j5esd"]
+script = ExtResource("3_0sbc0")
+stats = ExtResource("4_8i7uj")
+routine = SubResource("Resource_737p6")
+
+[sub_resource type="Resource" id="Resource_wpu8n"]
+script = ExtResource("5_siy7a")
+enemies = Array[ExtResource("3_0sbc0")]([ExtResource("8_4xda0"), SubResource("Resource_j5esd")])
+waveTime = 10
+infiniteWave = true
+nextEventWait = 1
+
+[sub_resource type="Resource" id="Resource_bcl24"]
+script = ExtResource("6_ltd4g")
+health = 5
+sprite = ExtResource("7_rkdrf")
+sfx = ExtResource("17_lgtt1")
+
+[sub_resource type="Resource" id="Resource_aqpm1"]
+script = ExtResource("3_0sbc0")
+stats = SubResource("Resource_bcl24")
+routine = ExtResource("15_wxth8")
+
+[sub_resource type="Resource" id="Resource_4hfwd"]
+script = ExtResource("5_siy7a")
+enemies = Array[ExtResource("3_0sbc0")]([SubResource("Resource_aqpm1")])
+waveTime = 10
+infiniteWave = true
+nextEventWait = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yy2q7"]
+size = Vector2(71, 1208)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ik7w"]
+size = Vector2(1920, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0pv0"]
+size = Vector2(1920, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fww82"]
+size = Vector2(71, 1208)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_wg1fb")
-events = Array[Resource("res://scripts/resources/level/level_event.gd")]([ExtResource("2_v865e"), ExtResource("2_7wcfh")])
+events = Array[Resource("res://scripts/resources/level/level_event.gd")]([SubResource("Resource_4nyq4"), SubResource("Resource_2v1ar"), ExtResource("2_7wcfh"), SubResource("Resource_wpu8n"), SubResource("Resource_4hfwd"), ExtResource("2_v865e")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1919.0
 offset_bottom = 1080.0
 texture = ExtResource("4_ml62m")
 
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="left" type="StaticBody2D" parent="Walls"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/left"]
+position = Vector2(-35.5, 540)
+shape = SubResource("RectangleShape2D_yy2q7")
+
+[node name="top" type="StaticBody2D" parent="Walls"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/top"]
+position = Vector2(960, -32)
+shape = SubResource("RectangleShape2D_6ik7w")
+
+[node name="bottom" type="StaticBody2D" parent="Walls"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/bottom"]
+position = Vector2(960, 1112)
+shape = SubResource("RectangleShape2D_r0pv0")
+
+[node name="right" type="StaticBody2D" parent="Walls"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/right"]
+position = Vector2(1956, 540)
+shape = SubResource("RectangleShape2D_fww82")
+
+[node name="Enemies" type="Area2D" parent="."]
+script = ExtResource("11_ru4nw")
+
 [node name="Player" parent="." instance=ExtResource("1_baitu")]
 position = Vector2(905, 953)
 
 [node name="Bullets" type="Area2D" parent="." groups=["BulletZones"]]
 
-[node name="Enemies" type="Area2D" parent="."]
-script = ExtResource("11_ru4nw")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-33, 540.75)
-shape = SubResource("RectangleShape2D_uy813")
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_rgp0s")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="child_exiting_tree" from="Enemies" to="Enemies" method="_on_child_exiting_tree"]
 [connection signal="enemies_deleted" from="Enemies" to="." method="_on_enemies_enemies_deleted"]

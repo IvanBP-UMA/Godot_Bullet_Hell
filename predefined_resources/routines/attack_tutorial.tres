@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="ActionRoutine" load_steps=8 format=3 uid="uid://karbaanhwwwg"]
+
+[ext_resource type="Script" path="res://scripts/resources/action_resources/movements/postional_movement.gd" id="1_bw2dk"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="1_tg5th"]
+
+[sub_resource type="Resource" id="Resource_rbfnl"]
+script = ExtResource("1_bw2dk")
+finalPosition = Vector2(0, 0)
+definedPosition = 4
+movingTime = 1.0
+actionType = 2
+cooldownTime = 0.5
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_f5cgm"]
+script = ExtResource("1_bw2dk")
+finalPosition = Vector2(0, 0)
+definedPosition = 2
+movingTime = 1.5
+actionType = 2
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_bpkwt"]
+script = ExtResource("1_bw2dk")
+finalPosition = Vector2(0, 0)
+definedPosition = 6
+movingTime = 1.5
+actionType = 2
+cooldownTime = 0.5
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_5i3f5"]
+script = ExtResource("1_bw2dk")
+finalPosition = Vector2(0, 0)
+definedPosition = 8
+movingTime = 1.5
+actionType = 2
+cooldownTime = 0.5
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_m6ns1"]
+script = ExtResource("1_bw2dk")
+finalPosition = Vector2(0, 0)
+definedPosition = 4
+movingTime = 1.5
+actionType = 2
+cooldownTime = 0.5
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[resource]
+script = ExtResource("1_tg5th")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([SubResource("Resource_rbfnl"), SubResource("Resource_f5cgm"), SubResource("Resource_bpkwt"), SubResource("Resource_5i3f5"), SubResource("Resource_m6ns1")])
+repeatInfinitely = true
+repeatFrom = 1
+repetitionCooldown = 0.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 17

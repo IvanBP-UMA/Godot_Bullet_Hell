@@ -7,7 +7,7 @@
 script = ExtResource("1_jgy84")
 lines = 6
 rows = 40
-frequency = 0.1
+frequency = 0.25
 mainDirection = Vector2(0, 1)
 aimPlayer = true
 followPlayer = false
@@ -19,7 +19,7 @@ parryMode = 0
 parryRows = 2
 bulletType = 0
 shape = ExtResource("2_ghpef")
-speed = 5.0
+speed = 4.0
 function = 0
 step = 0.1
 actionType = 1

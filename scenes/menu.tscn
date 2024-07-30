@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://t57qae0rgiu"]
+
+[ext_resource type="Texture2D" uid="uid://dv181ru8bjs0m" path="res://assets/titleScreenBG.png" id="1_b4lvx"]
+[ext_resource type="Script" path="res://scripts/nodes_scripts/menu.gd" id="1_vb2jy"]
+[ext_resource type="Texture2D" uid="uid://drq0pwmdet8ea" path="res://assets/logo.png" id="2_4fm0q"]
+[ext_resource type="Texture2D" uid="uid://d0kvefh8w3lxi" path="res://assets/startButton.png" id="3_jeou2"]
+[ext_resource type="AudioStream" uid="uid://6hb06fsrn4ew" path="res://assets/music/002 - Top Menu Theme - (Pokémon Mystery Dungeon - Explorers of Sky).mp3" id="5_mx4ok"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vb2jy")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_b4lvx")
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -630.0
+offset_top = 24.0
+offset_right = 647.0
+offset_bottom = 797.0
+grow_horizontal = 2
+texture = ExtResource("2_4fm0q")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 729.0
+offset_top = 818.0
+offset_right = 1242.0
+offset_bottom = 1015.0
+icon = ExtResource("3_jeou2")
+flat = true
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mx4ok")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

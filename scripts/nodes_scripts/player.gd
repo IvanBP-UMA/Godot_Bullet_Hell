@@ -4,10 +4,15 @@ class_name Player
 @export var speed: float = 600
 @export var lives: int = 3
 @export var bombs: int = 3
+@export var SFXJSON: JSON
+var SFXDictionary: Dictionary
 
 @onready var hurtbox: Area2D = $Hurtbox
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var attackHitbox: Area2D = $AttackHitbox
+
+@onready var attckSprite: Sprite2D = $AttackPlaceholder
+
 
 var direction: Vector2 = Vector2.ZERO
 var isAttacking: bool = false
@@ -15,6 +20,7 @@ var speedMultiplier: float = 3
 var attackPower: int = 2
 
 func _ready():
+	SFXDictionary = SFXJSON.data
 	sprite.play("idle")
 
 func _physics_process(delta):
@@ -42,6 +48,7 @@ func _input(event):
 func attack() -> void:
 	isAttacking = true
 	sprite.modulate = Color("0835ff")
+	attckSprite.visible = true
 	
 	var strikedObjects: Array[Area2D] = attackHitbox.get_overlapping_areas()
 	for area in strikedObjects:
@@ -51,12 +58,14 @@ func attack() -> void:
 			bullet.direction = getDirectionToEnemy(bullet)
 			bullet.speed *= speedMultiplier
 			bullet.currentState = Bullet.States.parried
+			SFXManager.sfx_play.emit(SFXDictionary["parry"])
 		elif (parent is Enemy):
 			var enemy: Enemy = parent
-			enemy.health -= attackPower
+			enemy.damaged.emit(attackPower)
 	
 	await get_tree().create_timer(0.3).timeout
 	sprite.modulate = Color(1,1,1,1)
+	attckSprite.visible = false
 	isAttacking = false
 
 func getDirectionToEnemy(bullet: Bullet):
@@ -79,7 +88,8 @@ func _on_hurtbox_area_entered(area):
 	if (lives == 0):
 		get_tree().paused = true
 		print_debug("GAME OVER")
-		
+	
+	SFXManager.sfx_play.emit(SFXDictionary["hit"])
 	sprite.modulate = Color("ff1e00")
 	hurtbox.set_collision_mask_value(1, false)
 	await get_tree().create_timer(1.5, false).timeout

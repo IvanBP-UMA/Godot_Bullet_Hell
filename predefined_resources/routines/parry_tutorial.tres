@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="ActionRoutine" load_steps=8 format=3 uid="uid://b50y0gr80hwo0"]
+
+[ext_resource type="Resource" uid="uid://feuyux4sq4w" path="res://predefined_resources/attacks/easy/aiming_line(NP).tres" id="1_h3upi"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="1_jbw1u"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/movements/postional_movement.gd" id="1_oy1av"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/attacks/directional_attack.gd" id="2_belpv"]
+[ext_resource type="Shape2D" uid="uid://cqb58xhbgtvli" path="res://predefined_resources/default_circle_shape.tres" id="3_lpf4s"]
+
+[sub_resource type="Resource" id="Resource_1ibxh"]
+script = ExtResource("1_oy1av")
+finalPosition = Vector2(0, 0)
+definedPosition = 2
+movingTime = 1.0
+actionType = 2
+cooldownTime = 0.5
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_bx4p0"]
+script = ExtResource("2_belpv")
+lines = 1
+rows = 10
+frequency = 0.2
+mainDirection = Vector2(0, 1)
+aimPlayer = true
+followPlayer = false
+frontFacing = false
+spinningPattern = false
+maxRotation = 6.28319
+reverseSpin = false
+parryMode = 3
+parryRows = 5
+bulletType = 0
+shape = ExtResource("3_lpf4s")
+speed = 8.0
+function = 0
+step = 0.1
+actionType = 1
+cooldownTime = 0.3
+repetitions = 5
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[resource]
+script = ExtResource("1_jbw1u")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([SubResource("Resource_1ibxh"), ExtResource("1_h3upi"), SubResource("Resource_bx4p0")])
+repeatInfinitely = true
+repeatFrom = 2
+repetitionCooldown = 0.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 11

@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="BulletHell"
-run/main_scene="res://scenes/level.tscn"
+run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Positions="*res://scripts/positions.gd"
+SFXManager="*res://scenes/sfx_manager.tscn"
 
 [display]
 

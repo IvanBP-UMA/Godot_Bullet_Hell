@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8e1xp6dgx5hb"]
+
+[ext_resource type="Script" path="res://scripts/nodes_scripts/sfx_manager.gd" id="1_0w32f"]
+[ext_resource type="PackedScene" uid="uid://dgsk1id32p02x" path="res://scenes/audio_player.tscn" id="2_8dseb"]
+
+[node name="SFXManager" type="Node"]
+script = ExtResource("1_0w32f")
+
+[node name="AudioPlayer" parent="." instance=ExtResource("2_8dseb")]
+
+[node name="AudioPlayer2" parent="." instance=ExtResource("2_8dseb")]
+
+[node name="AudioPlayer3" parent="." instance=ExtResource("2_8dseb")]
+
+[node name="AudioPlayer4" parent="." instance=ExtResource("2_8dseb")]
+
+[node name="AudioPlayer5" parent="." instance=ExtResource("2_8dseb")]
+
+[node name="AudioPlayer6" parent="." instance=ExtResource("2_8dseb")]

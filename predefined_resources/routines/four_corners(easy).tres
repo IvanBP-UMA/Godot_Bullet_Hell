@@ -9,10 +9,10 @@
 
 [resource]
 script = ExtResource("6_e4co3")
-actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([ExtResource("1_7teid"), ExtResource("2_n6216"), ExtResource("3_ebpl3"), ExtResource("2_n6216"), ExtResource("4_7u8v5"), ExtResource("2_n6216"), ExtResource("5_54m6r"), ExtResource("2_n6216")])
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([ExtResource("5_54m6r"), ExtResource("2_n6216"), ExtResource("4_7u8v5"), ExtResource("2_n6216"), ExtResource("3_ebpl3"), ExtResource("2_n6216"), ExtResource("1_7teid"), ExtResource("2_n6216")])
 repeatInfinitely = true
 repeatFrom = 0
-repetitionCooldown = 1.0
+repetitionCooldown = 0.0
 randomRoutineOrder = false
 spawnPosition = Vector2(0, 0)
-spawnDefinedPosition = 16
+spawnDefinedPosition = 19

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ActionRoutine" load_steps=5 format=3 uid="uid://cxhxi5kxbvdg"]
+
+[ext_resource type="Script" path="res://scripts/resources/action_resources/movements/postional_movement.gd" id="1_rue83"]
+[ext_resource type="Resource" uid="uid://tk5ch1dl2lij" path="res://predefined_resources/attacks/hard/spinning_hex.tres" id="2_ae467"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="3_kguwc"]
+
+[sub_resource type="Resource" id="Resource_6cb52"]
+script = ExtResource("1_rue83")
+finalPosition = Vector2(0, 0)
+definedPosition = 5
+movingTime = 0.5
+actionType = 2
+cooldownTime = 0.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[resource]
+script = ExtResource("3_kguwc")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([SubResource("Resource_6cb52"), ExtResource("2_ae467")])
+repeatInfinitely = true
+repeatFrom = 1
+repetitionCooldown = 0.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 11

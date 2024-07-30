@@ -1,7 +1,13 @@
-[gd_scene load_steps=30 format=3 uid="uid://gwebflaeoytd"]
+[gd_scene load_steps=32 format=3 uid="uid://gwebflaeoytd"]
 
 [ext_resource type="Script" path="res://scripts/nodes_scripts/player.gd" id="1_456ap"]
+[ext_resource type="JSON" path="res://predefined_resources/json/sfx/player_sfx.json" id="2_ny6dw"]
 [ext_resource type="Texture2D" uid="uid://obhuwgru42sy" path="res://assets/flappingSpritesheet.png" id="2_r8tdu"]
+[ext_resource type="Texture2D" uid="uid://dv181ru8bjs0m" path="res://assets/titleScreenBG.png" id="4_7jqrv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fo5j4"]
+radius = 31.0
+height = 140.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pfa0t"]
 atlas = ExtResource("2_r8tdu")
@@ -179,15 +185,24 @@ animations = [{
 "speed": 36.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fo5j4"]
-radius = 31.0
-height = 140.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qln8x"]
 size = Vector2(168, 83.5625)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_456ap")
+SFXJSON = ExtResource("2_ny6dw")
+
+[node name="OOBCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("CapsuleShape2D_fo5j4")
+
+[node name="AttackPlaceholder" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-0.499996, -87.5)
+scale = Vector2(0.0869792, 0.0768519)
+texture = ExtResource("4_7jqrv")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qwub8")

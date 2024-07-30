@@ -1,8 +1,11 @@
 extends Area2D
 class_name Enemy
 
+signal damaged(damge: int)
+
 const GRACE_MULTIPLIER = 0.9
 var health: int = 3
+var SFXDictionary: Dictionary
 
 @export var routine: ActionRoutine
 @export var statsData: EnemyStats
@@ -16,6 +19,7 @@ var health: int = 3
 var tween: Tween
 
 func _ready():
+	connect("damaged", _on_damaged)
 	setUpStats()
 	sprite.play("default")
 	if (routine == null):
@@ -27,16 +31,11 @@ func _ready():
 			await get_tree().create_timer(routine.repetitionCooldown, false).timeout
 			await executeRoutine(routine.repeatFrom)
 
-func _process(delta):
-	if (health<=0):
-		queue_free()
-	for bullet in bulletZone.get_children():
-		bullet.reparent(levelBullets, true)
-
 func setUpStats():
 	if (statsData == null):
 		return
 	health = statsData.health
+	SFXDictionary = statsData.sfx.data
 	
 	##Code dedicated to automatically modify hitbox size based on sprite
 	##Will have to be chang eto accomodate bird shapes
@@ -134,6 +133,7 @@ func spawnBullet(bulletSpecs: DirectionalAttack, parryable: bool) -> void:
 		bullet.find_child("Sprite2D").modulate =  Color("ff33d4")
 	bulletZone.add_child(bullet)
 	bullet.newBullet(shape, direction, speed)
+	bullet.reparent(levelBullets, true)
 
 func isParryable(patternSpecs: DirectionalAttack, row: int) -> bool:
 	var parryable: bool = false
@@ -161,4 +161,16 @@ func getVectorToPlayer() -> Vector2:
 func _on_hurtbox_area_entered(area):
 	var parent = area.get_parent()
 	if (parent is Bullet && parent.currentState == Bullet.States.parried):
-		health -= 1
+		damaged.emit(1)
+		
+func _on_damaged(damage: int):
+	health -= damage
+	if (health<=0):
+		SFXManager.sfx_play.emit(SFXDictionary["death"])
+		queue_free()
+	else:
+		SFXManager.sfx_play.emit(SFXDictionary["hit"])
+		sprite.modulate = Color("ff1e00")
+		await get_tree().create_timer(1, false).timeout
+		sprite.modulate = Color(1,1,1,1)
+	

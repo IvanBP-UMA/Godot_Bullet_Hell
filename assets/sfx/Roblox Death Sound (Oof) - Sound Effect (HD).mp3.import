@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bnxh0j4x236uy"
+path="res://.godot/imported/Roblox Death Sound (Oof) - Sound Effect (HD).mp3-71444d39bf4fdd6017888ff329783134.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Roblox Death Sound (Oof) - Sound Effect (HD).mp3"
+dest_files=["res://.godot/imported/Roblox Death Sound (Oof) - Sound Effect (HD).mp3-71444d39bf4fdd6017888ff329783134.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

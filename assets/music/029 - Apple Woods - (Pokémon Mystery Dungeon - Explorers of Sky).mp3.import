@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d1lr3psaoqqid"
+path="res://.godot/imported/029 - Apple Woods - (Pokémon Mystery Dungeon - Explorers of Sky).mp3-65693ef7b6dc08554a5371c4372eb878.mp3str"
+
+[deps]
+
+source_file="res://assets/music/029 - Apple Woods - (Pokémon Mystery Dungeon - Explorers of Sky).mp3"
+dest_files=["res://.godot/imported/029 - Apple Woods - (Pokémon Mystery Dungeon - Explorers of Sky).mp3-65693ef7b6dc08554a5371c4372eb878.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

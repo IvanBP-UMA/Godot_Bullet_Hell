@@ -1,0 +1,4 @@
+{
+	"hit":"res://assets/sfx/enemy_hit.wav",
+	"death":"res://assets/sfx/enemy_death.wav"
+}
