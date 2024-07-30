@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cl7278hevk61i"
+path="res://.godot/imported/Sad Song - Super Mario RPG_ Legend of the Seven Stars (Rip GiIvaSunner).mp3-32638070ca68f3328281d0e4012d7a90.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Sad Song - Super Mario RPG_ Legend of the Seven Stars (Rip GiIvaSunner).mp3"
+dest_files=["res://.godot/imported/Sad Song - Super Mario RPG_ Legend of the Seven Stars (Rip GiIvaSunner).mp3-32638070ca68f3328281d0e4012d7a90.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

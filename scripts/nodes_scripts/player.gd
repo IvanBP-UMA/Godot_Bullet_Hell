@@ -86,12 +86,11 @@ func bomb() -> void:
 func _on_hurtbox_area_entered(area):
 	lives -= 1
 	if (lives == 0):
-		get_tree().paused = true
-		print_debug("GAME OVER")
-	
-	SFXManager.sfx_play.emit(SFXDictionary["hit"])
-	sprite.modulate = Color("ff1e00")
-	hurtbox.set_collision_mask_value(1, false)
-	await get_tree().create_timer(1.5, false).timeout
-	hurtbox.set_collision_mask_value(1, true)
-	sprite.modulate = Color(1,1,1,1)
+		get_tree().change_scene_to_file("res://scenes/continue_screen.tscn")
+	else:
+		SFXManager.sfx_play.emit(SFXDictionary["hit"])
+		sprite.modulate = Color("ff1e00")
+		hurtbox.set_collision_mask_value(1, false)
+		await get_tree().create_timer(1.5, false).timeout
+		hurtbox.set_collision_mask_value(1, true)
+		sprite.modulate = Color(1,1,1,1)

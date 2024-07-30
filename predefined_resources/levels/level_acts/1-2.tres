@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelAct" load_steps=7 format=3 uid="uid://c3l6nc1uup5dv"]
+
+[ext_resource type="Script" path="res://scripts/resources/level/level_act.gd" id="1_1adec"]
+[ext_resource type="Resource" uid="uid://d1hb5o755qjky" path="res://predefined_resources/levels/level_events/enemy_waves/single_bullet_barrage_left.tres" id="1_rnj3v"]
+[ext_resource type="Resource" uid="uid://bcxflq8dbpao2" path="res://predefined_resources/levels/level_events/enemy_waves/dual_tri_attacker.tres" id="1_xiuqc"]
+[ext_resource type="Resource" uid="uid://bxvha5d0tfcvs" path="res://predefined_resources/levels/level_events/enemy_waves/single_bullet_barrage_top.tres" id="2_p38ki"]
+[ext_resource type="Resource" uid="uid://pmjofoc7l3ob" path="res://predefined_resources/levels/level_events/enemy_waves/single_bullet_barrage_right.tres" id="3_wk7yv"]
+[ext_resource type="Resource" uid="uid://wkpi7qj10oxm" path="res://predefined_resources/levels/level_events/enemy_waves/single_bullet_barrage_bottom.tres" id="4_i0akw"]
+
+[resource]
+script = ExtResource("1_1adec")
+events = Array[Resource("res://scripts/resources/level/level_event.gd")]([ExtResource("1_rnj3v"), ExtResource("2_p38ki"), ExtResource("3_wk7yv"), ExtResource("4_i0akw"), ExtResource("1_xiuqc")])
+playerStartPosition = Vector2(0, 0)
+playerStartDefinedPosition = 8

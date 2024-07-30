@@ -1,0 +1,172 @@
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=29 format=3 uid="uid://wkpi7qj10oxm"]
+
+[ext_resource type="Script" path="res://scripts/resources/action_resources/movements/postional_movement.gd" id="1_twqxw"]
+[ext_resource type="Resource" uid="uid://nfm2o20v73r7" path="res://predefined_resources/attacks/easy/aiming_single_bullet.tres" id="2_0c2u2"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/movements/directional_movement.gd" id="3_2rk4i"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="4_no3q2"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_definition.gd" id="5_3n3vv"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="6_oulps"]
+[ext_resource type="Script" path="res://scripts/resources/level/enemy_wave.gd" id="7_verwq"]
+
+[sub_resource type="Resource" id="Resource_tct5h"]
+script = ExtResource("1_twqxw")
+finalPosition = Vector2(0, 0)
+definedPosition = 7
+movingTime = 0.5
+actionType = 2
+cooldownTime = 0.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_qcxwr"]
+script = ExtResource("3_2rk4i")
+direction = Vector2(0, 1)
+speed = 500.0
+movingTime = 10.0
+actionType = 0
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_l0mpb"]
+script = ExtResource("4_no3q2")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([SubResource("Resource_tct5h"), ExtResource("2_0c2u2"), SubResource("Resource_qcxwr")])
+repeatInfinitely = false
+repeatFrom = 0
+repetitionCooldown = 1.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 13
+
+[sub_resource type="JSON" id="JSON_jr8sc"]
+data = {
+"death": "res://assets/sfx/enemy_death.wav",
+"hit": "res://assets/sfx/enemy_hit.wav"
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t4sli"]
+load_path = "res://.godot/imported/Knuckles.png-16caa5cd5633f15e56d537a6513529dc.ctex"
+
+[sub_resource type="Resource" id="Resource_6ff8h"]
+script = ExtResource("6_oulps")
+health = 1
+sprite = SubResource("CompressedTexture2D_t4sli")
+sfx = SubResource("JSON_jr8sc")
+
+[sub_resource type="Resource" id="Resource_jokfy"]
+script = ExtResource("5_3n3vv")
+stats = SubResource("Resource_6ff8h")
+routine = SubResource("Resource_l0mpb")
+
+[sub_resource type="Resource" id="Resource_l67c5"]
+script = ExtResource("1_twqxw")
+finalPosition = Vector2(0, 0)
+definedPosition = 8
+movingTime = 0.5
+actionType = 2
+cooldownTime = 0.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_sdb67"]
+script = ExtResource("3_2rk4i")
+direction = Vector2(0, 1)
+speed = 500.0
+movingTime = 10.0
+actionType = 0
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_x7ysr"]
+script = ExtResource("4_no3q2")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([SubResource("Resource_l67c5"), ExtResource("2_0c2u2"), SubResource("Resource_sdb67")])
+repeatInfinitely = false
+repeatFrom = 0
+repetitionCooldown = 1.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 14
+
+[sub_resource type="JSON" id="JSON_j2pxj"]
+data = {
+"death": "res://assets/sfx/enemy_death.wav",
+"hit": "res://assets/sfx/enemy_hit.wav"
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sr0nt"]
+load_path = "res://.godot/imported/Knuckles.png-16caa5cd5633f15e56d537a6513529dc.ctex"
+
+[sub_resource type="Resource" id="Resource_mrqhc"]
+script = ExtResource("6_oulps")
+health = 1
+sprite = SubResource("CompressedTexture2D_sr0nt")
+sfx = SubResource("JSON_j2pxj")
+
+[sub_resource type="Resource" id="Resource_6gle0"]
+script = ExtResource("5_3n3vv")
+stats = SubResource("Resource_mrqhc")
+routine = SubResource("Resource_x7ysr")
+
+[sub_resource type="Resource" id="Resource_00vgs"]
+script = ExtResource("1_twqxw")
+finalPosition = Vector2(0, 0)
+definedPosition = 9
+movingTime = 0.5
+actionType = 2
+cooldownTime = 0.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_syb7j"]
+script = ExtResource("3_2rk4i")
+direction = Vector2(0, 1)
+speed = 500.0
+movingTime = 10.0
+actionType = 0
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_asj2w"]
+script = ExtResource("4_no3q2")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([SubResource("Resource_00vgs"), ExtResource("2_0c2u2"), SubResource("Resource_syb7j")])
+repeatInfinitely = false
+repeatFrom = 0
+repetitionCooldown = 1.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 15
+
+[sub_resource type="JSON" id="JSON_w7b7n"]
+data = {
+"death": "res://assets/sfx/enemy_death.wav",
+"hit": "res://assets/sfx/enemy_hit.wav"
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bem6l"]
+load_path = "res://.godot/imported/Knuckles.png-16caa5cd5633f15e56d537a6513529dc.ctex"
+
+[sub_resource type="Resource" id="Resource_o47x1"]
+script = ExtResource("6_oulps")
+health = 1
+sprite = SubResource("CompressedTexture2D_bem6l")
+sfx = SubResource("JSON_w7b7n")
+
+[sub_resource type="Resource" id="Resource_6dpbw"]
+script = ExtResource("5_3n3vv")
+stats = SubResource("Resource_o47x1")
+routine = SubResource("Resource_asj2w")
+
+[resource]
+script = ExtResource("7_verwq")
+enemies = Array[ExtResource("5_3n3vv")]([SubResource("Resource_jokfy"), SubResource("Resource_6gle0"), SubResource("Resource_6dpbw")])
+waveTime = 0.5
+infiniteWave = false
+nextEventWait = 0.5

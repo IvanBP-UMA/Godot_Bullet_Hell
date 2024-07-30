@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Positions="*res://scripts/positions.gd"
 SFXManager="*res://scenes/sfx_manager.tscn"
+ActTracker="*res://scripts/act_tracker.gd"
 
 [display]
 
