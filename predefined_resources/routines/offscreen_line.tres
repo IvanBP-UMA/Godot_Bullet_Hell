@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ActionRoutine" load_steps=3 format=3 uid="uid://cipf5t5wc7v5t"]
+
+[ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="1_fdb31"]
+[ext_resource type="Resource" uid="uid://feuyux4sq4w" path="res://predefined_resources/attacks/easy/aiming_line(NP).tres" id="1_iggb3"]
+
+[resource]
+script = ExtResource("1_fdb31")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([ExtResource("1_iggb3")])
+repeatInfinitely = true
+repeatFrom = 0
+repetitionCooldown = 0.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 11

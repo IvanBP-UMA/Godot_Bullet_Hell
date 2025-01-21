@@ -6,3 +6,4 @@ class_name  EnemyStats
 #Enemy sprite. Hitbox and hurtbox will be created accordingly to its size
 @export var sprite: CompressedTexture2D = load("res://assets/Knuckles.png")
 @export var sfx: JSON
+@export var intangible: bool = false

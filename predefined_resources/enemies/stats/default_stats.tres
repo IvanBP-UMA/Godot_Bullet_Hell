@@ -9,3 +9,4 @@ script = ExtResource("1_1cclq")
 health = 1
 sprite = ExtResource("2_q6a67")
 sfx = ExtResource("2_6bt8q")
+intangible = false

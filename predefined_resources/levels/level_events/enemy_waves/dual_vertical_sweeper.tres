@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=16 format=3 uid="uid://cy6kwsqolm1aw"]
+
+[ext_resource type="Resource" uid="uid://bl04gpafs3e68" path="res://predefined_resources/enemies/definitions/vertical_sweeper.tres" id="1_ruys5"]
+[ext_resource type="Script" path="res://scripts/resources/level/enemy_wave.gd" id="1_wa8yw"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/attacks/directional_attack.gd" id="2_e5cfi"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/movements/directional_movement.gd" id="4_ht1oa"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="5_48ttb"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_definition.gd" id="6_i8aa6"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="7_c20pl"]
+[ext_resource type="JSON" path="res://predefined_resources/json/sfx/default_enemy_sfx.json" id="8_6rpd1"]
+[ext_resource type="Texture2D" uid="uid://begajc4b0kfxk" path="res://assets/Knuckles.png" id="9_ucbhi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4nxq7"]
+radius = 25.0
+
+[sub_resource type="Resource" id="Resource_l2ekx"]
+script = ExtResource("2_e5cfi")
+lines = 1
+rows = 50
+frequency = 0.1
+mainDirection = Vector2(0, -1)
+aimPlayer = false
+followPlayer = false
+frontFacing = false
+spinningPattern = false
+maxRotation = 6.28319
+reverseSpin = false
+parryMode = 5
+parryRows = 2
+bulletType = 0
+shape = SubResource("CircleShape2D_4nxq7")
+speed = 7.0
+function = 0
+step = 0.1
+actionType = 1
+cooldownTime = 0.0
+repetitions = 1
+waitBeforeNext = false
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_snbey"]
+script = ExtResource("4_ht1oa")
+direction = Vector2(-1, 0)
+speed = 200.0
+movingTime = 100.0
+actionType = 0
+cooldownTime = 1.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_ra2ga"]
+script = ExtResource("5_48ttb")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([SubResource("Resource_l2ekx"), SubResource("Resource_snbey")])
+repeatInfinitely = false
+repeatFrom = 0
+repetitionCooldown = 1.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 15
+
+[sub_resource type="Resource" id="Resource_utfvr"]
+script = ExtResource("7_c20pl")
+health = 1
+sprite = ExtResource("9_ucbhi")
+sfx = ExtResource("8_6rpd1")
+intangible = true
+
+[sub_resource type="Resource" id="Resource_xilxe"]
+script = ExtResource("6_i8aa6")
+stats = SubResource("Resource_utfvr")
+routine = SubResource("Resource_ra2ga")
+
+[resource]
+script = ExtResource("1_wa8yw")
+enemies = Array[ExtResource("6_i8aa6")]([ExtResource("1_ruys5"), SubResource("Resource_xilxe")])
+waveTime = 2.0
+infiniteWave = false
+nextEventWait = 0.0

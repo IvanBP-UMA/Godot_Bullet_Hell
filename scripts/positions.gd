@@ -10,7 +10,7 @@ enum definedPositions {EMPTY, TOP_LEFT, TOP_CENTER, TOP_RIGHT,
 						
 const viewportSize = Vector2(1920, 1080)
 const verticalOffset: int = 150
-const horizontalOffset: int = 170
+const horizontalOffset: int = 200
 
 const overVerticalMargin: int = 60
 const overHorizontalMargin: int = 80

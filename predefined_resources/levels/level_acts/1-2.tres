@@ -1,14 +1,63 @@
-[gd_resource type="Resource" script_class="LevelAct" load_steps=7 format=3 uid="uid://c3l6nc1uup5dv"]
+[gd_resource type="Resource" script_class="LevelAct" load_steps=21 format=3 uid="uid://c3l6nc1uup5dv"]
 
 [ext_resource type="Script" path="res://scripts/resources/level/level_act.gd" id="1_1adec"]
+[ext_resource type="Resource" uid="uid://bir6l8edsfp6f" path="res://predefined_resources/levels/level_events/enemy_waves/dual_horizontal_sweeper.tres" id="1_dh6os"]
 [ext_resource type="Resource" uid="uid://d1hb5o755qjky" path="res://predefined_resources/levels/level_events/enemy_waves/single_bullet_barrage_left.tres" id="1_rnj3v"]
 [ext_resource type="Resource" uid="uid://bcxflq8dbpao2" path="res://predefined_resources/levels/level_events/enemy_waves/dual_tri_attacker.tres" id="1_xiuqc"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_definition.gd" id="2_fdwsw"]
 [ext_resource type="Resource" uid="uid://bxvha5d0tfcvs" path="res://predefined_resources/levels/level_events/enemy_waves/single_bullet_barrage_top.tres" id="2_p38ki"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/movements/postional_movement.gd" id="2_tshj2"]
+[ext_resource type="Resource" uid="uid://iv3r7t62axo3" path="res://predefined_resources/attacks/medium/front_facing_wave.tres" id="3_2sr8c"]
+[ext_resource type="Script" path="res://scripts/resources/action_resources/action_routine.gd" id="3_5sdmg"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="3_7fl6l"]
 [ext_resource type="Resource" uid="uid://pmjofoc7l3ob" path="res://predefined_resources/levels/level_events/enemy_waves/single_bullet_barrage_right.tres" id="3_wk7yv"]
+[ext_resource type="Script" path="res://scripts/resources/level/enemy_wave.gd" id="4_1y30e"]
+[ext_resource type="JSON" path="res://predefined_resources/json/sfx/default_enemy_sfx.json" id="4_dj6ca"]
 [ext_resource type="Resource" uid="uid://wkpi7qj10oxm" path="res://predefined_resources/levels/level_events/enemy_waves/single_bullet_barrage_bottom.tres" id="4_i0akw"]
+[ext_resource type="Texture2D" uid="uid://begajc4b0kfxk" path="res://assets/Knuckles.png" id="5_n5ds8"]
+
+[sub_resource type="Resource" id="Resource_fqc0k"]
+script = ExtResource("2_tshj2")
+finalPosition = Vector2(0, 0)
+definedPosition = 2
+movingTime = 0.5
+actionType = 2
+cooldownTime = 0.0
+repetitions = 1
+waitBeforeNext = true
+overlapTimer = 0.0
+
+[sub_resource type="Resource" id="Resource_nrkwu"]
+script = ExtResource("3_5sdmg")
+actions = Array[Resource("res://scripts/resources/action_resources/action.gd")]([SubResource("Resource_fqc0k"), ExtResource("3_2sr8c")])
+repeatInfinitely = true
+repeatFrom = 1
+repetitionCooldown = 0.0
+randomRoutineOrder = false
+spawnPosition = Vector2(0, 0)
+spawnDefinedPosition = 11
+
+[sub_resource type="Resource" id="Resource_0rux3"]
+script = ExtResource("3_7fl6l")
+health = 3
+sprite = ExtResource("5_n5ds8")
+sfx = ExtResource("4_dj6ca")
+intangible = false
+
+[sub_resource type="Resource" id="Resource_grmux"]
+script = ExtResource("2_fdwsw")
+stats = SubResource("Resource_0rux3")
+routine = SubResource("Resource_nrkwu")
+
+[sub_resource type="Resource" id="Resource_12owa"]
+script = ExtResource("4_1y30e")
+enemies = Array[ExtResource("2_fdwsw")]([SubResource("Resource_grmux")])
+waveTime = 10.0
+infiniteWave = true
+nextEventWait = 1.0
 
 [resource]
 script = ExtResource("1_1adec")
-events = Array[Resource("res://scripts/resources/level/level_event.gd")]([ExtResource("1_rnj3v"), ExtResource("2_p38ki"), ExtResource("3_wk7yv"), ExtResource("4_i0akw"), ExtResource("1_xiuqc")])
+events = Array[Resource("res://scripts/resources/level/level_event.gd")]([ExtResource("1_dh6os"), SubResource("Resource_12owa"), ExtResource("1_rnj3v"), ExtResource("2_p38ki"), ExtResource("3_wk7yv"), ExtResource("4_i0akw"), ExtResource("1_xiuqc")])
 playerStartPosition = Vector2(0, 0)
-playerStartDefinedPosition = 8
+playerStartDefinedPosition = 5

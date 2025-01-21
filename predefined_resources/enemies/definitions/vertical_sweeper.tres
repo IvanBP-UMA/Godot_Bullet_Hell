@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=7 format=3 uid="uid://bl04gpafs3e68"]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_definition.gd" id="1_x2rbr"]
+[ext_resource type="Resource" uid="uid://deahkg63yrg6q" path="res://predefined_resources/routines/half_screen_vertical_sweep.tres" id="1_xv4fr"]
+[ext_resource type="Script" path="res://scripts/resources/enemy_stats.gd" id="3_6srf4"]
+[ext_resource type="JSON" path="res://predefined_resources/json/sfx/default_enemy_sfx.json" id="4_f6jlw"]
+[ext_resource type="Texture2D" uid="uid://begajc4b0kfxk" path="res://assets/Knuckles.png" id="5_f2ewi"]
+
+[sub_resource type="Resource" id="Resource_utfvr"]
+script = ExtResource("3_6srf4")
+health = 1
+sprite = ExtResource("5_f2ewi")
+sfx = ExtResource("4_f6jlw")
+intangible = true
+
+[resource]
+script = ExtResource("1_x2rbr")
+stats = SubResource("Resource_utfvr")
+routine = ExtResource("1_xv4fr")

@@ -117,8 +117,7 @@ script = ExtResource("1_8vqk6")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dg8je")
-frame = 5
-frame_progress = 0.693936
+frame_progress = 0.250152
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 0
@@ -128,7 +127,7 @@ position = Vector2(-0.5, -45.5)
 shape = SubResource("RectangleShape2D_nkvs2")
 
 [node name="Hurtbox" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 10
 collision_mask = 2
 
 [node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]

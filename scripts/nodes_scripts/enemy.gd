@@ -37,6 +37,12 @@ func setUpStats():
 	health = statsData.health
 	SFXDictionary = statsData.sfx.data
 	
+	if (statsData.intangible):
+		hitboxShape.disabled = true
+		var hurtboxArea = hurtboxShape.get_parent() as Area2D
+		hurtboxArea.set_collision_layer_value(2, false)
+		hurtboxArea.set_collision_mask_value(2, false)
+		sprite.visible = false
 	##Code dedicated to automatically modify hitbox size based on sprite
 	##Will have to be chang eto accomodate bird shapes
 	'''

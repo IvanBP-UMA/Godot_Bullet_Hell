@@ -61,4 +61,5 @@ func spawnEnemies(wave: EnemyWave):
 		await get_tree().create_timer(wave.waveTime, false).timeout
 
 func endLevel():
+	
 	get_tree().quit()

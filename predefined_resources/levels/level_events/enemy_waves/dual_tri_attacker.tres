@@ -14,6 +14,6 @@ routine = ExtResource("2_pd0xy")
 [resource]
 script = ExtResource("5_edp5w")
 enemies = Array[ExtResource("3_hgmmp")]([ExtResource("1_3q83b"), SubResource("Resource_d83j3")])
-waveTime = 10
+waveTime = 10.0
 infiniteWave = true
-nextEventWait = 1
+nextEventWait = 1.0

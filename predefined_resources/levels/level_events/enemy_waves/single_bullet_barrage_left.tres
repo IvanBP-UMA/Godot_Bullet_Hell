@@ -54,6 +54,7 @@ script = ExtResource("7_jhakg")
 health = 1
 sprite = SubResource("CompressedTexture2D_ywan6")
 sfx = SubResource("JSON_gk2dv")
+intangible = false
 
 [sub_resource type="Resource" id="Resource_txnc2"]
 script = ExtResource("6_yy5x1")
@@ -95,6 +96,7 @@ script = ExtResource("7_jhakg")
 health = 1
 sprite = SubResource("CompressedTexture2D_oix8g")
 sfx = SubResource("JSON_l6soe")
+intangible = false
 
 [sub_resource type="Resource" id="Resource_jpmp1"]
 script = ExtResource("6_yy5x1")
@@ -136,6 +138,7 @@ script = ExtResource("7_jhakg")
 health = 1
 sprite = SubResource("CompressedTexture2D_gb64y")
 sfx = SubResource("JSON_rpwtl")
+intangible = false
 
 [sub_resource type="Resource" id="Resource_llaon"]
 script = ExtResource("6_yy5x1")

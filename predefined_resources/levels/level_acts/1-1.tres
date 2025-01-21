@@ -27,9 +27,9 @@ routine = ExtResource("1_ydcgk")
 [sub_resource type="Resource" id="Resource_4nyq4"]
 script = ExtResource("4_jseky")
 enemies = Array[ExtResource("2_haqwk")]([SubResource("Resource_i1aqo")])
-waveTime = 10
+waveTime = 10.0
 infiniteWave = true
-nextEventWait = 1
+nextEventWait = 1.0
 
 [sub_resource type="Resource" id="Resource_m360y"]
 script = ExtResource("2_haqwk")
@@ -39,9 +39,9 @@ routine = ExtResource("5_a7gnc")
 [sub_resource type="Resource" id="Resource_2v1ar"]
 script = ExtResource("4_jseky")
 enemies = Array[ExtResource("2_haqwk")]([SubResource("Resource_m360y")])
-waveTime = 10
+waveTime = 10.0
 infiniteWave = true
-nextEventWait = 1
+nextEventWait = 1.0
 
 [sub_resource type="Resource" id="Resource_737p6"]
 script = ExtResource("13_urrdj")
@@ -61,15 +61,16 @@ routine = SubResource("Resource_737p6")
 [sub_resource type="Resource" id="Resource_wpu8n"]
 script = ExtResource("4_jseky")
 enemies = Array[ExtResource("2_haqwk")]([ExtResource("7_y6lox"), SubResource("Resource_j5esd")])
-waveTime = 10
+waveTime = 10.0
 infiniteWave = true
-nextEventWait = 1
+nextEventWait = 1.0
 
 [sub_resource type="Resource" id="Resource_bcl24"]
 script = ExtResource("15_daf63")
 health = 5
 sprite = ExtResource("17_sawb8")
 sfx = ExtResource("16_gscs8")
+intangible = false
 
 [sub_resource type="Resource" id="Resource_aqpm1"]
 script = ExtResource("2_haqwk")
@@ -79,9 +80,9 @@ routine = ExtResource("14_dxii1")
 [sub_resource type="Resource" id="Resource_4hfwd"]
 script = ExtResource("4_jseky")
 enemies = Array[ExtResource("2_haqwk")]([SubResource("Resource_aqpm1")])
-waveTime = 10
+waveTime = 10.0
 infiniteWave = true
-nextEventWait = 1
+nextEventWait = 1.0
 
 [resource]
 script = ExtResource("1_rduge")
